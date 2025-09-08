@@ -200,6 +200,11 @@
             background-size: cover;
             background-position: center;
             background-attachment: fixed;
+            transition: background-image 1s ease-in-out, opacity 0.5s ease-in-out; /* AÑADIDO: Transición suave */
+        }
+
+        .hero-fade-out {
+            opacity: 0.9;
         }
 
         .hero-content {
@@ -352,6 +357,7 @@
         /* --- SECCIÓN UBICACIÓN --- */
         #ubicacion {
             background-color: var(--color-fondo-claro);
+            padding: 6rem 0 0; /* Modificado para eliminar el padding inferior */
         }
         .map-container {
             position: relative;
@@ -359,7 +365,7 @@
             width: 100%;
             padding-top: 50%; /* Proporción 2:1 */
             margin-top: 3rem;
-            border: 1px solid #eee;
+            border: none; /* Modificado para eliminar el borde */
         }
 
         .map-container iframe {
@@ -685,9 +691,9 @@
             <div class="container">
                 <h2 data-translate="ubicacion_titulo">Localização Privilegiada</h2>
                 <p data-translate="ubicacion_desc">Situado na prestigiada zona do Campo Alegre, com acesso imediato aos principais serviços, zonas verdes, centros culturais e vias de comunicação da cidade. Uma localização que combina tranquilidade e vida urbana.</p>
-                <div class="map-container">
-                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3004.184325875883!2d-8.64166668458197!3d41.15243897928646!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xd2465a3153c3e67%3A0x6b87e2b12a9e349d!2sR.%20do%20Campo%20Alegre%201024%2C%204150-171%20Porto!5e0!3m2!1ses!2spt!4v1662580000000!5m2!1ses!2spt" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
-                </div>
+            </div>
+            <div class="map-container">
+                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3004.184325875883!2d-8.64166668458197!3d41.15243897928646!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xd2465a3153c3e67%3A0x6b87e2b12a9e349d!2sR.%20do%20Campo%20Alegre%201024%2C%204150-171%20Porto!5e0!3m2!1ses!2spt!4v1662580000000!5m2!1ses!2spt" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
             </div>
         </section>
 
@@ -787,6 +793,39 @@
                 const cardWidth = carousel.querySelector('.apartment-card').offsetWidth;
                 carousel.scrollLeft -= cardWidth * 1;
             });
+        }
+
+        // --- SCRIPT HERO SLIDESHOW ---
+        const heroSection = document.getElementById('hero');
+        
+        // **AQUÍ PUEDES AÑADIR TUS ENLACES DE IMAGEN**
+        const heroImages = [
+            'https://raw.githubusercontent.com/wagmimedia/campoalegre1024/refs/heads/main/EXT-8.jpg',
+            'https://raw.githubusercontent.com/wagmimedia/campoalegre1024/refs/heads/main/EXT-7.jpg',
+            'https://raw.githubusercontent.com/wagmimedia/campoalegre1024/refs/heads/main/EXT-3.jpg',
+            'https://raw.githubusercontent.com/wagmimedia/campoalegre1024/refs/heads/main/EXT-4.jpg',
+            'https://raw.githubusercontent.com/wagmimedia/campoalegre1024/refs/heads/main/EXT-5.jpg',
+            'https://raw.githubusercontent.com/wagmimedia/campoalegre1024/refs/heads/main/INT_COMUNS-12.jpg',
+            'https://raw.githubusercontent.com/wagmimedia/campoalegre1024/refs/heads/main/QUARTO_INTEIRO-1-2048x852.jpg',
+            'https://raw.githubusercontent.com/wagmimedia/campoalegre1024/refs/heads/main/SALA_.jpg',
+            'https://raw.githubusercontent.com/wagmimedia/campoalegre1024/refs/heads/main/WC_ULTIMO_PISO.jpg'
+        ];
+
+        let currentImageIndex = 0;
+
+        if (heroImages.length > 1) {
+            setInterval(() => {
+                currentImageIndex = (currentImageIndex + 1) % heroImages.length;
+                
+                heroSection.classList.add('hero-fade-out');
+
+                setTimeout(() => {
+                    const newImageUrl = `linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), url('${heroImages[currentImageIndex]}')`;
+                    heroSection.style.backgroundImage = newImageUrl;
+                    heroSection.classList.remove('hero-fade-out');
+                }, 500); // Coincide con la duración de la transición de opacidad
+
+            }, 5000); // Cambia cada 5 segundos
         }
 
 
