@@ -1,0 +1,945 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Campo Alegre 1024 | Projeto Imobiliário</title>
+    <link rel="icon" href="https://raw.githubusercontent.com/wagmimedia/campoalegre1024/refs/heads/main/Logo-Campo-Alegre_bigger.png" type="image/png">
+    
+    <!-- Google Fonts: Montserrat para títulos y Lato para texto -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400&family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet">
+
+    <style>
+        /* --- RESET Y ESTILOS GLOBALES --- */
+        :root {
+            --color-primario: #1a1a1a; /* Negro/Gris muy oscuro (se mantiene) */
+            --color-secundario: #6c757d; /* Gris para texto secundario (se mantiene) */
+            --color-fondo-claro: #fbf9f6; /* NUEVO: Crema muy claro para el fondo principal */
+            --color-fondo-oscuro: #f4f0e9; /* NUEVO: Beige suave para secciones alternas */
+            --color-blanco: #ffffff; /* Blanco para elementos como tarjetas y navbar */
+            --sombra-suave: 0 4px 15px rgba(0, 0, 0, 0.05);
+            --fuente-titulos: 'Montserrat', sans-serif;
+            --fuente-cuerpo: 'Lato', sans-serif;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            border-radius: 0; /* Esquinas rectas para todos los elementos */
+        }
+
+        html {
+            scroll-behavior: smooth;
+            font-size: 16px;
+        }
+
+        body {
+            font-family: var(--fuente-cuerpo);
+            background-color: var(--color-fondo-claro); /* CAMBIO: fondo principal más cálido */
+            color: var(--color-primario);
+            line-height: 1.7;
+        }
+        
+        h1, h2, h3 {
+            font-family: var(--fuente-titulos);
+            font-weight: 600;
+        }
+
+        h2 {
+            font-size: 2.5rem;
+            margin-bottom: 1.5rem;
+            text-align: center;
+            font-weight: 400;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+
+        p {
+            margin-bottom: 1rem;
+            color: var(--color-secundario);
+            max-width: 700px; /* Limita el ancho de los párrafos para mejorar la lectura */
+        }
+
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        section {
+            padding: 6rem 0;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 12px 28px;
+            border: 1px solid var(--color-primario);
+            background-color: transparent;
+            color: var(--color-primario);
+            text-decoration: none;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-weight: 600;
+            font-family: var(--fuente-titulos);
+            transition: all 0.3s ease;
+        }
+
+        .btn:hover {
+            background-color: var(--color-primario);
+            color: var(--color-blanco);
+        }
+
+        /* --- BARRA DE NAVEGACIÓN --- */
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1.5rem 2rem;
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background-color: rgba(251, 249, 246, 0.85); /* CAMBIO: Color natural con transparencia */
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(0, 0, 0, 0.05); /* CAMBIO: Borde más sutil */
+            z-index: 1000;
+            transition: background-color 0.3s ease;
+        }
+
+        .nav-logo {
+            display: flex;
+            align-items: center;
+            text-decoration: none;
+        }
+
+        .nav-logo img {
+            max-height: 45px; /* Altura del logo en la barra de navegación */
+            width: auto;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+        }
+
+        .nav-links li {
+            margin-left: 2.5rem;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--color-primario);
+            font-family: var(--fuente-titulos);
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            padding-bottom: 5px;
+            position: relative;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 1px;
+            bottom: 0;
+            left: 0;
+            background-color: var(--color-primario);
+            transition: width 0.3s ease;
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        .mobile-menu-toggle {
+            display: none;
+            cursor: pointer;
+            background: none;
+            border: none;
+            z-index: 1001; /* Para que esté por encima del menú */
+        }
+        
+        .hamburger-icon {
+            width: 30px;
+            height: 22px;
+            position: relative;
+        }
+        
+        .hamburger-icon span {
+            display: block;
+            position: absolute;
+            height: 2px;
+            width: 100%;
+            background: var(--color-primario);
+            opacity: 1;
+            left: 0;
+            transition: all .25s ease-in-out;
+        }
+        
+        .hamburger-icon span:nth-child(1) { top: 0px; }
+        .hamburger-icon span:nth-child(2) { top: 10px; }
+        .hamburger-icon span:nth-child(3) { top: 20px; }
+        
+        .nav-open .hamburger-icon span:nth-child(1) { top: 10px; transform: rotate(135deg); }
+        .nav-open .hamburger-icon span:nth-child(2) { opacity: 0; left: -30px; }
+        .nav-open .hamburger-icon span:nth-child(3) { top: 10px; transform: rotate(-135deg); }
+
+
+        /* --- SECCIÓN HERO --- */
+        #hero {
+            height: 100vh;
+            display: flex;
+            align-items: flex-end; /* Alineado abajo */
+            justify-content: flex-start; /* Alineado a la izquierda */
+            color: var(--color-blanco);
+            background-color: #333; /* Color de fondo si la imagen no carga */
+            background-image: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), url('https://raw.githubusercontent.com/wagmimedia/campoalegre1024/refs/heads/main/EXT-8.jpg');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+        }
+
+        .hero-content {
+            padding: 0 0 10px 6rem; /* Padding derecho eliminado para dar más espacio al texto */
+            text-align: left;
+            max-width: 900px; /* Ancho máximo aumentado */
+        }
+
+        .hero-content h1 {
+            font-size: clamp(2rem, 4vw, 3.4rem); /* Tamaño de fuente reducido */
+            font-weight: 700;
+            margin-bottom: 1rem;
+            letter-spacing: 1px;
+        }
+
+        .hero-content p {
+            font-size: 1rem; /* Tamaño de fuente reducido */
+            max-width: 550px; /* Ancho máximo aumentado */
+            margin-bottom: 2rem;
+            color: rgba(255, 255, 255, 0.9);
+            font-weight: 300;
+        }
+        
+        .hero-content .btn {
+            color: var(--color-blanco);
+            border-color: var(--color-blanco);
+        }
+        
+        .hero-content .btn:hover {
+            background-color: var(--color-blanco);
+            color: var(--color-primario);
+        }
+
+        /* --- SECCIÓN PROYECTO --- */
+        #proyecto .container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+        }
+        
+        .project-image img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        .project-text p { margin-left: auto; margin-right: auto; }
+
+        /* --- SECCIÓN APARTAMENTOS (CARRUSEL) --- */
+        #apartamentos {
+            background-color: var(--color-fondo-oscuro);
+            overflow: hidden; 
+        }
+
+        .carousel-wrapper {
+            position: relative;
+            margin-top: 3rem;
+        }
+
+        .apartments-carousel {
+            display: flex;
+            overflow-x: auto;
+            scroll-behavior: smooth;
+            padding-bottom: 2rem; /* Espacio para que no se corte la sombra */
+            -ms-overflow-style: none;  /* IE and Edge */
+            scrollbar-width: none;  /* Firefox */
+        }
+
+        .apartments-carousel::-webkit-scrollbar {
+            display: none; /* Chrome, Safari, Opera */
+        }
+
+        .apartment-card {
+            flex: 0 0 31%; /* Muestra 3 tarjetas y un poco de la siguiente */
+            max-width: 31%;
+            margin-right: 2rem;
+            background-color: var(--color-blanco);
+            text-align: left;
+            display: flex;
+            flex-direction: column;
+            transition: transform 0.3s ease;
+        }
+
+        @media (max-width: 900px) {
+            .apartment-card { flex: 0 0 45%; max-width: 45%; }
+        }
+        @media (max-width: 600px) {
+            .apartment-card { flex: 0 0 85%; max-width: 85%; }
+        }
+
+        .apartment-image-placeholder {
+            min-height: 280px;
+            width: 100%;
+            background-color: #e0e0e0;
+            background-size: cover;
+            background-position: center;
+        }
+        
+        .apartment-card-content {
+            padding: 2rem;
+            border: 1px solid #eee;
+            border-top: none;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .apartment-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+        }
+        
+        .apartment-card .btn {
+            margin-top: auto;
+            font-size: 0.8rem;
+            padding: 10px 24px;
+        }
+
+        .carousel-btn {
+            position: absolute;
+            top: 40%;
+            transform: translateY(-50%);
+            background-color: var(--color-blanco);
+            border: 1px solid #eee;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 10;
+            transition: all 0.3s ease;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        .carousel-btn:hover {
+            background-color: var(--color-primario);
+            color: var(--color-blanco);
+        }
+
+        .carousel-btn#prevBtn {
+            left: -25px;
+        }
+        .carousel-btn#nextBtn {
+            right: -25px;
+        }
+
+        /* --- SECCIÓN UBICACIÓN --- */
+        #ubicacion {
+            background-color: var(--color-fondo-claro);
+        }
+        .map-container {
+            position: relative;
+            overflow: hidden;
+            width: 100%;
+            padding-top: 50%; /* Proporción 2:1 */
+            margin-top: 3rem;
+            border: 1px solid #eee;
+        }
+
+        .map-container iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: 0;
+        }
+        
+        #ubicacion p {
+            text-align: center;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        /* --- SECCIÓN SOBRE NOSOTROS --- */
+        #sobre-nos {
+            background-color: var(--color-primario);
+            color: var(--color-blanco);
+        }
+
+        #sobre-nos h2 {
+            color: var(--color-blanco);
+        }
+        
+        #sobre-nos p {
+            color: rgba(255, 255, 255, 0.8);
+            text-align: center;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        .brokers-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            max-width: 600px;
+            margin: 4rem auto 0 auto;
+        }
+
+        .broker-card {
+            background-color: var(--color-blanco);
+            text-align: center;
+            padding: 0 0 2rem 0;
+            overflow: hidden;
+        }
+        
+        .broker-card img {
+            width: 100%;
+            height: auto;
+            display: block;
+            margin-bottom: 1.5rem;
+        }
+
+        .broker-card h3 {
+            color: var(--color-primario);
+            font-size: 1.25rem;
+            margin: 0;
+        }
+
+        .broker-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+            margin-top: 1rem;
+        }
+        
+        .broker-buttons a {
+            color: var(--color-primario);
+            opacity: 0.6;
+            transition: opacity 0.3s ease;
+        }
+
+        .broker-buttons a:hover {
+            opacity: 1;
+        }
+
+        .broker-buttons svg {
+            width: 24px;
+            height: 24px;
+        }
+        
+        /* --- SECCIÓN CONTACTO --- */
+        #contacto {
+            background-color: var(--color-fondo-oscuro);
+        }
+
+        #contacto p {
+            text-align: center;
+            margin-left: auto;
+            margin-right: auto;
+            margin-bottom: 3rem;
+        }
+
+        .contact-form {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.5rem;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .form-group {
+            width: 100%;
+        }
+
+        .form-group-full {
+            grid-column: 1 / -1;
+        }
+
+        .contact-form input,
+        .contact-form textarea {
+            width: 100%;
+            padding: 1rem;
+            border: 1px solid #ddd;
+            background-color: var(--color-blanco);
+            font-family: var(--fuente-cuerpo);
+            font-size: 1rem;
+            color: var(--color-primario);
+            transition: border-color 0.3s ease;
+        }
+
+        .contact-form input::placeholder,
+        .contact-form textarea::placeholder {
+            color: #999;
+        }
+
+        .contact-form input:focus,
+        .contact-form textarea:focus {
+            outline: none;
+            border-color: var(--color-primario);
+        }
+
+        .contact-form button {
+            width: auto;
+            cursor: pointer;
+            background-color: var(--color-primario);
+            color: var(--color-blanco);
+            border-color: var(--color-primario);
+        }
+
+        .contact-form button:hover {
+            background-color: var(--color-blanco);
+            color: var(--color-primario);
+        }
+
+
+        /* --- FOOTER --- */
+        footer {
+            background-color: var(--color-fondo-oscuro);
+            text-align: center;
+            padding: 3rem;
+            border-top: 1px solid #ddd;
+        }
+        
+        footer p {
+            margin-bottom: 0;
+            font-size: 0.9rem;
+        }
+
+        /* --- ESTILOS PARA MÓVIL (RESPONSIVE) --- */
+        @media (max-width: 768px) {
+            h2 { font-size: 2rem; }
+            .mobile-menu-toggle { display: block; }
+            .nav-links {
+                position: fixed; top: 0; left: 100%; width: 100%; height: 100vh;
+                flex-direction: column; align-items: center; justify-content: center;
+                background-color: var(--color-blanco);
+                transition: left 0.35s ease-in-out;
+            }
+            .nav-links.active { left: 0; }
+            .nav-links li { margin: 2rem 0; }
+            #proyecto .container { grid-template-columns: 1fr; }
+            .project-image { grid-row: 1; }
+            .contact-form { grid-template-columns: 1fr; }
+            .hero-content { padding: 0 2rem 2rem 2rem; } /* Padding inferior reducido para móvil */
+            .carousel-btn { display: none; } /* Oculta botones en móvil, se usa swipe */
+        }
+    </style>
+</head>
+<body>
+
+    <!-- =======================
+              BARRA DE NAVEGACIÓN
+         ======================== -->
+    <header>
+        <nav class="navbar" id="navbar">
+            <a href="#hero" class="nav-logo">
+                <img src="https://raw.githubusercontent.com/wagmimedia/campoalegre1024/refs/heads/main/Logo-Campo-Alegre_bigger.png" alt="Logo Campo Alegre 1024">
+            </a>
+            <ul class="nav-links" id="nav-menu">
+                <li><a href="#proyecto" data-translate="nav_proyecto">O Projeto</a></li>
+                <li><a href="#apartamentos" data-translate="nav_apartamentos">Apartamentos</a></li>
+                <li><a href="#ubicacion" data-translate="nav_ubicacion">Localização</a></li>
+                <li><a href="#sobre-nos" data-translate="nav_agencia">Agência Douro</a></li>
+                <li><a href="#contacto" data-translate="nav_contacto">Contacto</a></li>
+            </ul>
+            <button class="mobile-menu-toggle" id="mobile-menu" aria-label="Abrir menu">
+                <div class="hamburger-icon"><span></span><span></span><span></span></div>
+            </button>
+        </nav>
+    </header>
+
+    <main>
+
+        <!-- ======================= SECCIÓN HERO ======================== -->
+        <section id="hero">
+            <div class="hero-content">
+                <h1 data-translate="hero_titulo">Viver no Coração da Cidade</h1>
+                <p data-translate="hero_subtitulo">Um projeto exclusivo que redefine a elegância urbana. Descubra a sua nova casa no Campo Alegre 1024.</p>
+                <a href="#proyecto" class="btn" data-translate="hero_btn">Saber mais</a>
+            </div>
+        </section>
+
+        <!-- ======================= SECCIÓN PROYECTO ======================== -->
+        <section id="proyecto">
+            <div class="container">
+                <div class="project-text">
+                    <h2 data-translate="proyecto_titulo">Design e Exclusividade</h2>
+                    <p data-translate="proyecto_p1">O Campo Alegre 1024 é um empreendimento residencial com uma arquitetura contemporânea, de linhas retas e sóbrias, que se integra harmoniosamente nos jardins circundantes. O piso do átrio principal dispõe de um oásis de lazer e descontração com diversas salas sociais, de wellness e jardins privados.</p>
+                    <p data-translate="proyecto_p2">Os 30 apartamentos, com tipologias de T1 a T5, combinam modernidade e funcionalidade, criando ambientes confortáveis para quem procura o bem-estar. Todas as habitações, das quais duas moradias e duas penthouses, têm uma forte relação com os espaços exteriores.</p>
+                </div>
+                <div class="project-image">
+                    <img src="https://raw.githubusercontent.com/wagmimedia/campoalegre1024/refs/heads/main/EXT-7.jpg" alt="Fachada do edifício Campo Alegre 1024">
+                </div>
+            </div>
+        </section>
+
+        <!-- ======================= SECCIÓN APARTAMENTOS ======================== -->
+        <section id="apartamentos">
+            <div class="container">
+                <h2 data-translate="apartamentos_titulo">Tipologias Disponíveis</h2>
+                <div class="carousel-wrapper">
+                    <div class="apartments-carousel" id="apartments-carousel">
+                        <!-- Card T1 -->
+                        <div class="apartment-card">
+                            <div class="apartment-image-placeholder" style="background-image: url('https://placehold.co/400x300/e0e0e0/aaa?text=Apartamento');"></div>
+                            <div class="apartment-card-content">
+                                <h3 data-translate="apt_t1_title">Apartamento T1</h3>
+                                <p data-translate="apt_t1_desc">Ideal para indivíduos ou casais. Espaços otimizados com acabamentos de alta qualidade e design moderno.</p>
+                                <a href="#" class="btn" data-translate="btn_detalhes">Mais detalhes</a>
+                            </div>
+                        </div>
+                        <!-- Card T1+1 -->
+                        <div class="apartment-card">
+                            <div class="apartment-image-placeholder" style="background-image: url('https://placehold.co/400x300/e0e0e0/aaa?text=Apartamento');"></div>
+                            <div class="apartment-card-content">
+                                <h3 data-translate="apt_t1plus1_title">Apartamento T1+1</h3>
+                                <p data-translate="apt_t1plus1_desc">A versatilidade de um espaço extra, perfeito para um escritório ou um quarto de hóspedes.</p>
+                                <a href="#" class="btn" data-translate="btn_detalhes">Mais detalhes</a>
+                            </div>
+                        </div>
+                        <!-- Card T2 -->
+                        <div class="apartment-card">
+                            <div class="apartment-image-placeholder" style="background-image: url('https://placehold.co/400x300/e0e0e0/aaa?text=Apartamento');"></div>
+                            <div class="apartment-card-content">
+                                <h3 data-translate="apt_t2_title">Apartamento T2</h3>
+                                <p data-translate="apt_t2_desc">Perfeito para famílias pequenas. Amplitude, luminosidade e conforto em cada canto.</p>
+                                <a href="#" class="btn" data-translate="btn_detalhes">Mais detalhes</a>
+                            </div>
+                        </div>
+                        <!-- Card T2+1 -->
+                        <div class="apartment-card">
+                            <div class="apartment-image-placeholder" style="background-image: url('https://placehold.co/400x300/e0e0e0/aaa?text=Apartamento');"></div>
+                            <div class="apartment-card-content">
+                                <h3 data-translate="apt_t2plus1_title">Apartamento T2+1</h3>
+                                <p data-translate="apt_t2plus1_desc">Conforto familiar com a flexibilidade de um quarto adicional para as suas necessidades.</p>
+                                <a href="#" class="btn" data-translate="btn_detalhes">Mais detalhes</a>
+                            </div>
+                        </div>
+                        <!-- Card T3 -->
+                        <div class="apartment-card">
+                            <div class="apartment-image-placeholder" style="background-image: url('https://placehold.co/400x300/e0e0e0/aaa?text=Apartamento');"></div>
+                            <div class="apartment-card-content">
+                                <h3 data-translate="apt_t3_title">Apartamento T3</h3>
+                                <p data-translate="apt_t3_desc">O espaço de que a sua família necessita. Vistas desafogadas e uma distribuição excecional.</p>
+                                <a href="#" class="btn" data-translate="btn_detalhes">Mais detalhes</a>
+                            </div>
+                        </div>
+                        <!-- Card T3+1 -->
+                        <div class="apartment-card">
+                            <div class="apartment-image-placeholder" style="background-image: url('https://placehold.co/400x300/e0e0e0/aaa?text=Apartamento');"></div>
+                            <div class="apartment-card-content">
+                                <h3 data-translate="apt_t3plus1_title">Apartamento T3+1</h3>
+                                <p data-translate="apt_t3plus1_desc">Amplas áreas sociais e privacidade, com um espaço extra para máxima comodidade.</p>
+                                <a href="#" class="btn" data-translate="btn_detalhes">Mais detalhes</a>
+                            </div>
+                        </div>
+                        <!-- Card T5 -->
+                        <div class="apartment-card">
+                            <div class="apartment-image-placeholder" style="background-image: url('https://placehold.co/400x300/e0e0e0/aaa?text=Apartamento');"></div>
+                            <div class="apartment-card-content">
+                                <h3 data-translate="apt_t5_title">Apartamento T5</h3>
+                                <p data-translate="apt_t5_desc">Exclusividade e luxo no seu expoente máximo. Um apartamento generoso em área e conforto.</p>
+                                <a href="#" class="btn" data-translate="btn_detalhes">Mais detalhes</a>
+                            </div>
+                        </div>
+                        <!-- Card Moradia -->
+                        <div class="apartment-card">
+                            <div class="apartment-image-placeholder" style="background-image: url('https://placehold.co/400x300/e0e0e0/aaa?text=Apartamento');"></div>
+                            <div class="apartment-card-content">
+                                <h3 data-translate="apt_moradia_title">Moradia</h3>
+                                <p data-translate="apt_moradia_desc">A privacidade de uma casa com a segurança e as comodidades de um condomínio de luxo.</p>
+                                <a href="#" class="btn" data-translate="btn_detalhes">Mais detalhes</a>
+                            </div>
+                        </div>
+                    </div>
+                    <button class="carousel-btn" id="prevBtn" aria-label="Anterior"><i data-feather="arrow-left"></i></button>
+                    <button class="carousel-btn" id="nextBtn" aria-label="Seguinte"><i data-feather="arrow-right"></i></button>
+                </div>
+            </div>
+        </section>
+        
+        <!-- ======================= SECCIÓN UBICACIÓN ======================== -->
+        <section id="ubicacion">
+            <div class="container">
+                <h2 data-translate="ubicacion_titulo">Localização Privilegiada</h2>
+                <p data-translate="ubicacion_desc">Situado na prestigiada zona do Campo Alegre, com acesso imediato aos principais serviços, zonas verdes, centros culturais e vias de comunicação da cidade. Uma localização que combina tranquilidade e vida urbana.</p>
+                <div class="map-container">
+                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3004.184325875883!2d-8.64166668458197!3d41.15243897928646!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xd2465a3153c3e67%3A0x6b87e2b12a9e349d!2sR.%20do%20Campo%20Alegre%201024%2C%204150-171%20Porto!5e0!3m2!1ses!2spt!4v1662580000000!5m2!1ses!2spt" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                </div>
+            </div>
+        </section>
+
+        <!-- ======================= SECCIÓN SOBRE NOSOTROS ======================== -->
+        <section id="sobre-nos">
+            <div class="container">
+                <h2 data-translate="agencia_titulo">Agência Douro</h2>
+                <p data-translate="agencia_desc">Na Agência Douro, a nossa missão é transformar sonhos em realidade, sempre com um compromisso inabalável com a transparência e a responsabilidade. A nossa equipa é composta por profissionais altamente qualificados, prontos para o ajudar a realizar o sonho da sua vida.</p>
+                
+                <div class="brokers-grid">
+                    <!-- Broker 1 -->
+                    <div class="broker-card">
+                        <img src="https://placehold.co/400x500/e0e0e0/aaa?text=Vania" alt="Retrato de Vania Fernandes">
+                        <h3>Vania Fernandes</h3>
+                        <div class="broker-buttons">
+                            <a href="mailto:vania.fernandes@example.com" aria-label="Email"><i data-feather="mail"></i></a>
+                            <a href="https://wa.me/351000000000" target="_blank" aria-label="WhatsApp"><i data-feather="message-circle"></i></a>
+                        </div>
+                    </div>
+                    <!-- Broker 2 -->
+                    <div class="broker-card">
+                        <img src="https://placehold.co/400x500/e0e0e0/aaa?text=Maria" alt="Retrato de Maria Martins">
+                        <h3>Maria Martins</h3>
+                        <div class="broker-buttons">
+                            <a href="mailto:maria.martins@example.com" aria-label="Email"><i data-feather="mail"></i></a>
+                            <a href="https://wa.me/351000000001" target="_blank" aria-label="WhatsApp"><i data-feather="message-circle"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ======================= SECCIÓN CONTACTO ======================== -->
+        <section id="contacto">
+            <div class="container">
+                <h2 data-translate="contacto_titulo">Contacto</h2>
+                <p data-translate="contacto_desc">Interessado em saber mais? Deixe-nos a sua mensagem e entraremos em contacto consigo o mais brevemente possível para lhe fornecer toda a informação de que necessita.</p>
+                <form class="contact-form" action="#" method="POST">
+                    <div class="form-group">
+                        <input type="text" id="nombre" name="nombre" data-translate-placeholder="form_nombre" placeholder="Nome Completo" required>
+                    </div>
+                    <div class="form-group">
+                        <input type="email" id="email" name="email" data-translate-placeholder="form_email" placeholder="Endereço de Email" required>
+                    </div>
+                    <div class="form-group form-group-full">
+                        <textarea id="mensaje" name="mensaje" rows="6" data-translate-placeholder="form_mensaje" placeholder="A sua mensagem" required></textarea>
+                    </div>
+                    <div class="form-group form-group-full" style="text-align: center;">
+                        <button type="submit" class="btn" data-translate="form_btn">Enviar Mensagem</button>
+                    </div>
+                </form>
+            </div>
+        </section>
+        
+    </main>
+
+    <!-- ======================= FOOTER ======================== -->
+    <footer>
+        <div class="container">
+            <p data-translate="footer_copy">&copy; 2025 Campo Alegre 1024. Todos os direitos reservados.</p>
+        </div>
+    </footer>
+
+    <!-- Feather Icons -->
+    <script src="https://unpkg.com/feather-icons"></script>
+
+    <script>
+        // --- SCRIPT PARA MENÚ MÓVIL ---
+        const mobileMenuButton = document.getElementById('mobile-menu');
+        const navMenu = document.getElementById('nav-menu');
+        const navbar = document.getElementById('navbar');
+
+        mobileMenuButton.addEventListener('click', () => {
+            navMenu.classList.toggle('active');
+            navbar.classList.toggle('nav-open');
+        });
+
+        navMenu.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', () => {
+                navMenu.classList.remove('active');
+                navbar.classList.remove('nav-open');
+            });
+        });
+
+        // --- SCRIPT CARRUSEL ---
+        const carousel = document.getElementById('apartments-carousel');
+        const prevBtn = document.getElementById('prevBtn');
+        const nextBtn = document.getElementById('nextBtn');
+
+        if (carousel) {
+            nextBtn.addEventListener('click', () => {
+                const cardWidth = carousel.querySelector('.apartment-card').offsetWidth;
+                carousel.scrollLeft += cardWidth * 1; // Mueve una tarjeta a la vez
+            });
+
+            prevBtn.addEventListener('click', () => {
+                const cardWidth = carousel.querySelector('.apartment-card').offsetWidth;
+                carousel.scrollLeft -= cardWidth * 1;
+            });
+        }
+
+
+        // --- SCRIPT DE TRADUCCIÓN ---
+        document.addEventListener('DOMContentLoaded', () => {
+            const translations = {
+                'pt': {
+                    nav_proyecto: 'O Projeto',
+                    nav_apartamentos: 'Apartamentos',
+                    nav_ubicacion: 'Localização',
+                    nav_agencia: 'Agência Douro',
+                    nav_contacto: 'Contacto',
+                    hero_titulo: 'Viver no Coração da Cidade',
+                    hero_subtitulo: 'Um projeto exclusivo que redefine a elegância urbana. Descubra a sua nova casa no Campo Alegre 1024.',
+                    hero_btn: 'Saber mais',
+                    proyecto_titulo: 'Design e Exclusividade',
+                    proyecto_p1: 'O Campo Alegre 1024 é um empreendimento residencial com uma arquitetura contemporânea, de linhas retas e sóbrias, que se integra harmoniosamente nos jardins circundantes. O piso do átrio principal dispõe de um oásis de lazer e descontração com diversas salas sociais, de wellness e jardins privados.',
+                    proyecto_p2: 'Os 30 apartamentos, com tipologias de T1 a T5, combinam modernidade e funcionalidade, criando ambientes confortáveis para quem procura o bem-estar. Todas as habitações, das quais duas moradias e duas penthouses, têm uma forte relação com os espaços exteriores.',
+                    apartamentos_titulo: 'Tipologias Disponíveis',
+                    btn_detalhes: 'Mais detalhes',
+                    apt_t1_title: 'Apartamento T1',
+                    apt_t1_desc: 'Ideal para indivíduos ou casais. Espaços otimizados com acabamentos de alta qualidade e design moderno.',
+                    apt_t1plus1_title: 'Apartamento T1+1',
+                    apt_t1plus1_desc: 'A versatilidade de um espaço extra, perfeito para um escritório ou um quarto de hóspedes.',
+                    apt_t2_title: 'Apartamento T2',
+                    apt_t2_desc: 'Perfeito para famílias pequenas. Amplitude, luminosidade e conforto em cada canto.',
+                    apt_t2plus1_title: 'Apartamento T2+1',
+                    apt_t2plus1_desc: 'Conforto familiar com a flexibilidade de um quarto adicional para as suas necessidades.',
+                    apt_t3_title: 'Apartamento T3',
+                    apt_t3_desc: 'O espaço de que a sua família necessita. Vistas desafogadas e uma distribuição excecional.',
+                    apt_t3plus1_title: 'Apartamento T3+1',
+                    apt_t3plus1_desc: 'Amplas áreas sociais e privacidade, com um espaço extra para máxima comodidade.',
+                    apt_t5_title: 'Apartamento T5',
+                    apt_t5_desc: 'Exclusividade e luxo no seu expoente máximo. Um apartamento generoso em área e conforto.',
+                    apt_moradia_title: 'Moradia',
+                    apt_moradia_desc: 'A privacidade de uma casa com a segurança e as comodidades de um condomínio de luxo.',
+                    ubicacion_titulo: 'Localização Privilegiada',
+                    ubicacion_desc: 'Situado na prestigiada zona do Campo Alegre, com acesso imediato aos principais serviços, zonas verdes, centros culturais e vias de comunicação da cidade. Uma localização que combina tranquilidade e vida urbana.',
+                    agencia_titulo: 'Agência Douro',
+                    agencia_desc: 'Na Agência Douro, a nossa missão é transformar sonhos em realidade, sempre com um compromisso inabalável com a transparência e a responsabilidade. A nossa equipa é composta por profissionais altamente qualificados, prontos para o ajudar a realizar o sonho da sua vida.',
+                    contacto_titulo: 'Contacto',
+                    contacto_desc: 'Interessado em saber mais? Deixe-nos a sua mensagem e entraremos em contacto consigo o mais brevemente possível para lhe fornecer toda a informação de que necessita.',
+                    form_nombre: 'Nome Completo',
+                    form_email: 'Endereço de Email',
+                    form_mensaje: 'A sua mensagem',
+                    form_btn: 'Enviar Mensagem',
+                    footer_copy: '© 2025 Campo Alegre 1024. Todos os direitos reservados.'
+                },
+                'es': {
+                    nav_proyecto: 'El Proyecto',
+                    nav_apartamentos: 'Apartamentos',
+                    nav_ubicacion: 'Ubicación',
+                    nav_agencia: 'Agencia Douro',
+                    nav_contacto: 'Contacto',
+                    hero_titulo: 'Vivir en el Corazón de la Ciudad',
+                    hero_subtitulo: 'Un proyecto exclusivo que redefine la elegancia urbana. Descubre tu nuevo hogar en Campo Alegre 1024.',
+                    hero_btn: 'Saber más',
+                    proyecto_titulo: 'Diseño y Exclusividad',
+                    proyecto_p1: 'Campo Alegre 1024 es un desarrollo residencial con una arquitectura contemporánea, de líneas rectas y sobrias, que se integra armoniosamente en los jardines circundantes. La planta del vestíbulo principal cuenta con un oasis de ocio y relajación con varias salas sociales, de bienestar y jardines privados.',
+                    proyecto_p2: 'Los 30 apartamentos, con tipologías de T1 a T5, combinan modernidad y funcionalidad, creando ambientes confortables para quienes buscan el bienestar. Todas las viviendas, de las cuales dos son villas y dos son áticos, tienen una fuerte relación con los espacios exteriores.',
+                    apartamentos_titulo: 'Tipologías Disponibles',
+                    btn_detalhes: 'Más detalles',
+                    apt_t1_title: 'Apartamento T1',
+                    apt_t1_desc: 'Ideal para individuos o parejas. Espacios optimizados con acabados de alta calidad y diseño moderno.',
+                    apt_t1plus1_title: 'Apartamento T1+1',
+                    apt_t1plus1_desc: 'La versatilidad de un espacio extra, perfecto para una oficina o un cuarto de invitados.',
+                    apt_t2_title: 'Apartamento T2',
+                    apt_t2_desc: 'Perfecto para familias pequeñas. Amplitud, luminosidad y confort en cada rincón.',
+                    apt_t2plus1_title: 'Apartamento T2+1',
+                    apt_t2plus1_desc: 'Confort familiar con la flexibilidad de una habitación adicional para sus necesidades.',
+                    apt_t3_title: 'Apartamento T3',
+                    apt_t3_desc: 'El espacio que tu familia necesita. Vistas despejadas y una distribución excepcional.',
+                    apt_t3plus1_title: 'Apartamento T3+1',
+                    apt_t3plus1_desc: 'Amplias áreas sociales y privacidad, con un espacio extra para máxima comodidad.',
+                    apt_t5_title: 'Apartamento T5',
+                    apt_t5_desc: 'Exclusividad y lujo en su máximo exponente. Un apartamento generoso en área y confort.',
+                    apt_moradia_title: 'Villa',
+                    apt_moradia_desc: 'La privacidad de una casa con la seguridad y las comodidades de un condominio de lujo.',
+                    ubicacion_titulo: 'Ubicación Privilegiada',
+                    ubicacion_desc: 'Situado en la prestigiosa zona de Campo Alegre, con acceso inmediato a los principales servicios, zonas verdes, centros culturales y vías de comunicación de la ciudad. Una localización que combina tranquilidad y vida urbana.',
+                    agencia_titulo: 'Agencia Douro',
+                    agencia_desc: 'En Agência Douro, nuestra misión es convertir los sueños en realidad, siempre con un compromiso inquebrantable con la transparencia y la responsabilidad. Nuestro equipo está compuesto por profesionales altamente cualificados, listos para ayudarle a realizar el sueño de su vida.',
+                    contacto_titulo: 'Contacto',
+                    contacto_desc: '¿Interesado en saber más? Déjanos tu mensaje y te contactaremos a la brevedad para ofrecerte toda la información que necesites.',
+                    form_nombre: 'Nombre Completo',
+                    form_email: 'Correo Electrónico',
+                    form_mensaje: 'Tu mensaje',
+                    form_btn: 'Enviar Mensaje',
+                    footer_copy: '© 2025 Campo Alegre 1024. Todos los derechos reservados.'
+                },
+                'en': {
+                    nav_proyecto: 'The Project',
+                    nav_apartamentos: 'Apartments',
+                    nav_ubicacion: 'Location',
+                    nav_agencia: 'Douro Agency',
+                    nav_contacto: 'Contact',
+                    hero_titulo: 'Living in the Heart of the City',
+                    hero_subtitulo: 'An exclusive project that redefines urban elegance. Discover your new home at Campo Alegre 1024.',
+                    hero_btn: 'Learn more',
+                    proyecto_titulo: 'Design and Exclusivity',
+                    proyecto_p1: 'Campo Alegre 1024 is a residential development with a contemporary architecture of straight, sober lines that blend harmoniously into the surrounding gardens. The main lobby floor features an oasis of leisure and relaxation with several social rooms, a wellness area, and private gardens.',
+                    proyecto_p2: 'The 30 apartments, ranging from T1 to T5, combine modernity and functionality, creating comfortable environments for those seeking well-being. All homes, including two villas and two penthouses, have a strong connection to the outdoor spaces.',
+                    apartamentos_titulo: 'Available Typologies',
+                    btn_detalhes: 'More details',
+                    apt_t1_title: '1-Bedroom Apartment',
+                    apt_t1_desc: 'Ideal for individuals or couples. Optimized spaces with high-quality finishes and modern design.',
+                    apt_t1plus1_title: '1-Bedroom+1 Apartment',
+                    apt_t1plus1_desc: 'The versatility of an extra space, perfect for an office or a guest room.',
+                    apt_t2_title: '2-Bedroom Apartment',
+                    apt_t2_desc: 'Perfect for small families. Spaciousness, brightness, and comfort in every corner.',
+                    apt_t2plus1_title: '2-Bedroom+1 Apartment',
+                    apt_t2plus1_desc: 'Family comfort with the flexibility of an additional room for your needs.',
+                    apt_t3_title: '3-Bedroom Apartment',
+                    apt_t3_desc: 'The space your family needs. Unobstructed views and an exceptional layout.',
+                    apt_t3plus1_title: '3-Bedroom+1 Apartment',
+                    apt_t3plus1_desc: 'Large social areas and privacy, with an extra space for maximum convenience.',
+                    apt_t5_title: '5-Bedroom Apartment',
+                    apt_t5_desc: 'Exclusivity and luxury at its finest. A generous apartment in area and comfort.',
+                    apt_moradia_title: 'Villa',
+                    apt_moradia_desc: 'The privacy of a house with the security and amenities of a luxury condominium.',
+                    ubicacion_titulo: 'Privileged Location',
+                    ubicacion_desc: 'Located in the prestigious area of Campo Alegre, with immediate access to the main services, green areas, cultural centers, and communication routes of the city. A location that combines tranquility and urban life.',
+                    agencia_titulo: 'Douro Agency',
+                    agencia_desc: "At Agência Douro, our mission is to turn dreams into reality, always with an unwavering commitment to transparency and accountability. Our team is comprised of highly qualified professionals, ready to help you realize your life's dream.",
+                    contacto_titulo: 'Contact',
+                    contacto_desc: 'Interested in learning more? Leave us your message, and we will contact you shortly to provide you with all the information you need.',
+                    form_nombre: 'Full Name',
+                    form_email: 'Email Address',
+                    form_mensaje: 'Your message',
+                    form_btn: 'Send Message',
+                    footer_copy: '© 2025 Campo Alegre 1024. All rights reserved.'
+                }
+            };
+
+            const userLang = navigator.language.slice(0, 2) || 'pt';
+            const lang = translations[userLang] ? userLang : 'pt';
+            
+            document.documentElement.lang = lang;
+
+            document.querySelectorAll('[data-translate]').forEach(el => {
+                const key = el.getAttribute('data-translate');
+                if (translations[lang][key]) {
+                    el.textContent = translations[lang][key];
+                }
+            });
+
+            document.querySelectorAll('[data-translate-placeholder]').forEach(el => {
+                const key = el.getAttribute('data-translate-placeholder');
+                if (translations[lang][key]) {
+                    el.placeholder = translations[lang][key];
+                }
+            });
+            
+            // Reemplaza los data-feather-iconos por SVGs
+            feather.replace();
+        });
+    </script>
+
+</body>
+</html>
+
