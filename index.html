@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Campo Alegre 1024 | Projeto Imobiliário</title>
-    <link rel="icon" href="https://raw.githubusercontent.com/wagmimedia/campoalegre1024/refs/heads/main/Logo%20DOURO%20Transparent.png" type="image/png">
+    <link rel="icon" href="https://raw.githubusercontent.com/wagmimedia/campoalegre1024/refs/heads/main/Logo%20DOURO%20Transparent1.png" type="image/png">
     
     <!-- Google Fonts: Montserrat para títulos y Lato para texto -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -225,7 +225,8 @@
 
         .hero-content h1 {
             font-size: clamp(2rem, 4vw, 3.4rem); /* Tamaño de fuente reducido */
-            font-weight: 700;
+            font-weight: 400; /* CAMBIO: Igual que H2 */
+            text-transform: uppercase; /* CAMBIO: Igual que H2 */
             margin-bottom: 1rem;
             letter-spacing: 1px;
         }
@@ -263,6 +264,74 @@
         }
 
         .project-text p { margin-left: auto; margin-right: auto; }
+        
+        /* --- SEÇÃO AMENITIES --- */
+        #amenities {
+            padding: 0;
+            overflow: hidden;
+        }
+
+        .amenities-carousel-wrapper {
+            position: relative;
+            height: 80vh;
+            color: var(--color-blanco);
+        }
+
+        #amenities h2 {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            z-index: 10;
+            text-shadow: 0 2px 8px rgba(0,0,0,0.6);
+            color: var(--color-blanco);
+        }
+
+        .amenities-carousel {
+            display: flex;
+            overflow-x: auto;
+            scroll-behavior: smooth;
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+        }
+
+        .amenities-carousel::-webkit-scrollbar {
+            display: none;
+        }
+
+        .amenity-slide {
+            flex: 0 0 100%; 
+            max-width: 100%;
+            margin-right: 0;
+            position: relative;
+            height: 100%;
+        }
+
+        .amenity-slide img {
+            width: 100%;
+            height: 100%;
+            display: block;
+            object-fit: cover;
+        }
+        
+        .amenities-btn {
+            top: 50%;
+            z-index: 10;
+        }
+
+        .amenities-btn#amenitiesPrevBtn {
+            left: 3rem;
+        }
+
+        .amenities-btn#amenitiesNextBtn {
+            right: 3rem;
+        }
+
 
         /* --- SEÇÃO APARTAMENTOS (CARRUSEL) --- */
         #apartamentos {
@@ -299,17 +368,6 @@
             transition: transform 0.3s ease;
         }
         
-        @media (max-width: 1100px) {
-             .apartment-card { flex: 0 0 31%; max-width: 31%; }
-        }
-
-        @media (max-width: 900px) {
-            .apartment-card { flex: 0 0 45%; max-width: 45%; }
-        }
-        @media (max-width: 600px) {
-            .apartment-card { flex: 0 0 85%; max-width: 85%; }
-        }
-
         .apartment-image-placeholder {
             min-height: 280px;
             width: 100%;
@@ -567,11 +625,22 @@
 
 
         /* --- ESTILOS PARA MÓVIL (RESPONSIVE) --- */
+        @media (max-width: 1100px) {
+             .apartment-card { flex: 0 0 31%; max-width: 31%; }
+        }
+
+        @media (max-width: 900px) {
+            .apartment-card { flex: 0 0 45%; max-width: 45%; }
+        }
         @media (max-width: 768px) {
             h2 { font-size: 2rem; }
             
             #hero {
                 background-attachment: scroll; /* CORRECCIÓN: Desactiva el efecto parallax en móvil para compatibilidad */
+            }
+            
+            #amenities h2 {
+                font-size: 2rem;
             }
 
             .mobile-menu-toggle { display: block; }
@@ -589,6 +658,11 @@
             .hero-content { padding: 0 2rem 2rem 2rem; } /* Padding inferior reducido para móvil */
             .carousel-btn { display: none; } /* Oculta botones en móvil, se usa swipe */
             .modal-content { width: 95%; padding: 2rem 1.5rem; }
+            .amenities-btn { display: none; }
+        }
+         @media (max-width: 600px) {
+            .apartment-card { flex: 0 0 85%; max-width: 85%; }
+            .amenities-carousel-wrapper { height: 60vh; }
         }
     </style>
 </head>
@@ -600,7 +674,7 @@
     <header>
         <nav class="navbar" id="navbar">
             <a href="#hero" class="nav-logo">
-                <img src="https://raw.githubusercontent.com/wagmimedia/campoalegre1024/refs/heads/main/Logo%20DOURO%20Transparent.png" alt="Logo Agência Douro">
+                <img src="https://raw.githubusercontent.com/wagmimedia/campoalegre1024/refs/heads/main/Logo%20DOURO%20Transparent1.png" alt="Logo Agência Douro">
             </a>
             <ul class="nav-links" id="nav-menu">
                 <li><a href="#proyecto" data-translate="nav_proyecto">O Projeto</a></li>
@@ -639,6 +713,22 @@
                 </div>
             </div>
         </section>
+
+        <!-- ======================= SEÇÃO AMENITIES ======================== -->
+        <section id="amenities">
+             <div class="amenities-carousel-wrapper">
+                <h2 data-translate="amenities_titulo">Amenities</h2>
+                <div class="amenities-carousel" id="amenities-carousel">
+                    <div class="amenity-slide"><img src="https://raw.githubusercontent.com/wagmimedia/campoalegre1024/refs/heads/main/INT_COMUNS%20(1).jpg" alt="Amenity 1"></div>
+                    <div class="amenity-slide"><img src="https://raw.githubusercontent.com/wagmimedia/campoalegre1024/refs/heads/main/ZONA_COMUM.jpg" alt="Amenity 2"></div>
+                    <div class="amenity-slide"><img src="https://raw.githubusercontent.com/wagmimedia/campoalegre1024/refs/heads/main/INT_COMUNS-12.jpg" alt="Amenity 3"></div>
+                    <div class="amenity-slide"><img src="https://raw.githubusercontent.com/wagmimedia/campoalegre1024/refs/heads/main/INT_COMUNS%20(2).jpg" alt="Amenity 4"></div>
+                </div>
+                <button class="carousel-btn amenities-btn" id="amenitiesPrevBtn" aria-label="Anterior"><i data-feather="arrow-left"></i></button>
+                <button class="carousel-btn amenities-btn" id="amenitiesNextBtn" aria-label="Seguinte"><i data-feather="arrow-right"></i></button>
+            </div>
+        </section>
+
 
         <!-- ======================= SEÇÃO APARTAMENTOS ======================== -->
         <section id="apartamentos">
@@ -774,7 +864,7 @@
             });
         });
 
-        // --- SCRIPT CARRUSEL ---
+        // --- SCRIPT CARRUSEL APARTAMENTOS ---
         const carousel = document.getElementById('apartments-carousel');
         const prevBtn = document.getElementById('prevBtn');
         const nextBtn = document.getElementById('nextBtn');
@@ -790,6 +880,24 @@
                 carousel.scrollLeft -= cardWidth * 1;
             });
         }
+        
+        // --- SCRIPT AMENITIES CAROUSEL ---
+        const amenitiesCarousel = document.getElementById('amenities-carousel');
+        const amenitiesPrevBtn = document.getElementById('amenitiesPrevBtn');
+        const amenitiesNextBtn = document.getElementById('amenitiesNextBtn');
+
+        if (amenitiesCarousel) {
+            amenitiesNextBtn.addEventListener('click', () => {
+                const slideWidth = amenitiesCarousel.offsetWidth;
+                amenitiesCarousel.scrollLeft += slideWidth;
+            });
+
+            amenitiesPrevBtn.addEventListener('click', () => {
+                const slideWidth = amenitiesCarousel.offsetWidth;
+                amenitiesCarousel.scrollLeft -= slideWidth;
+            });
+        }
+
 
         // --- SCRIPT HERO SLIDESHOW ---
         const heroSection = document.getElementById('hero');
@@ -833,12 +941,13 @@
                     nav_ubicacion: 'Localização',
                     nav_agencia: 'Agência Douro',
                     nav_contacto: 'Contacto',
-                    hero_titulo: 'Viver no Coração da Cidade',
+                    hero_titulo: 'Viver no Coração do Porto',
                     hero_subtitulo: 'Um projeto exclusivo que redefine a elegância urbana. Descubra a sua nova casa no Campo Alegre 1024.',
                     hero_btn: 'Saber mais',
                     proyecto_titulo: 'Design e Exclusividade',
                     proyecto_p1: 'O Campo Alegre 1024 é um empreendimento residencial com uma arquitetura contemporânea, de linhas retas e sóbrias, que se integra harmoniosamente nos jardins circundantes. O piso do átrio principal dispõe de um oásis de lazer e descontração com diversas salas sociais, de wellness e jardins privados.',
                     proyecto_p2: 'Os 30 apartamentos, com tipologias de T1 a T5, combinam modernidade e funcionalidade, criando ambientes confortáveis para quem procura o bem-estar. Todas as habitações, das quais duas moradias e duas penthouses, têm uma forte relação com os espaços exteriores.',
+                    amenities_titulo: 'Comodidades',
                     apartamentos_titulo: 'Apartamentos Destacados',
                     btn_detalhes: 'Mais detalhes',
                     apt_penthouse_title: 'Penthouse T5',
@@ -901,12 +1010,13 @@
                     nav_ubicacion: 'Ubicación',
                     nav_agencia: 'Agencia Douro',
                     nav_contacto: 'Contacto',
-                    hero_titulo: 'Vivir en el Corazón de la Ciudad',
+                    hero_titulo: 'Vivir en el Corazón de Oporto',
                     hero_subtitulo: 'Un proyecto exclusivo que redefine la elegancia urbana. Descubre tu nuevo hogar en Campo Alegre 1024.',
                     hero_btn: 'Saber más',
                     proyecto_titulo: 'Diseño y Exclusividad',
                     proyecto_p1: 'Campo Alegre 1024 es un desarrollo residencial con una arquitectura contemporánea, de líneas rectas y sobrias, que se integra armoniosamente en los jardines circundantes. La planta del vestíbulo principal cuenta con un oasis de ocio y relajación con varias salas sociales, de bienestar y jardines privados.',
                     proyecto_p2: 'Los 30 apartamentos, con tipologías de T1 a T5, combinan modernidad y funcionalidad, creando ambientes confortables para quienes buscan el bienestar. Todas las viviendas, de las cuales dos son villas y dos son áticos, tienen una fuerte relación con los espacios exteriores.',
+                    amenities_titulo: 'Amenidades',
                     apartamentos_titulo: 'Apartamentos Destacados',
                     btn_detalhes: 'Más detalles',
                     apt_penthouse_title: 'Penthouse T5',
@@ -969,12 +1079,13 @@
                     nav_ubicacion: 'Location',
                     nav_agencia: 'Douro Agency',
                     nav_contacto: 'Contact',
-                    hero_titulo: 'Living in the Heart of the City',
+                    hero_titulo: 'Living in the Heart of Porto',
                     hero_subtitulo: 'An exclusive project that redefines urban elegance. Discover your new home at Campo Alegre 1024.',
                     hero_btn: 'Learn more',
                     proyecto_titulo: 'Design and Exclusivity',
                     proyecto_p1: 'Campo Alegre 1024 is a residential development with a contemporary architecture of straight, sober lines that blend harmoniously into the surrounding gardens. The main lobby floor features an oasis of leisure and relaxation with several social rooms, a wellness area, and private gardens.',
                     proyecto_p2: 'The 30 apartments, ranging from T1 to T5, combine modernity and functionality, creating comfortable environments for those seeking well-being. All homes, including two villas and two penthouses, have a strong connection to the outdoor spaces.',
+                    amenities_titulo: 'Amenities',
                     apartamentos_titulo: 'Featured Apartments',
                     btn_detalhes: 'More details',
                     apt_penthouse_title: 'Penthouse T5',
