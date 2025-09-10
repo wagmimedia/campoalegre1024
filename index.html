@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Campo Alegre 1024 | Projeto Imobiliário</title>
-    <link rel="icon" href="https://raw.githubusercontent.com/wagmimedia/campoalegre1024/refs/heads/main/Logo-Campo-Alegre_bigger.png" type="image/png">
+    <link rel="icon" href="https://raw.githubusercontent.com/wagmimedia/campoalegre1024/refs/heads/main/Logo%20DOURO%20Transparent.png" type="image/png">
     
     <!-- Google Fonts: Montserrat para títulos y Lato para texto -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -43,7 +43,7 @@
             line-height: 1.7;
         }
         
-        h1, h2, h3 {
+        h1, h2, h3, h4 {
             font-family: var(--fuente-titulos);
             font-weight: 600;
         }
@@ -61,6 +61,16 @@
             margin-bottom: 1rem;
             color: var(--color-secundario);
             max-width: 700px; /* Limita el ancho de los párrafos para mejorar la lectura */
+        }
+
+        ul {
+            list-style-position: inside;
+            padding-left: 1rem;
+            margin-bottom: 1.5rem;
+        }
+
+        li {
+            margin-bottom: 0.5rem;
         }
 
         .container {
@@ -92,7 +102,7 @@
             color: var(--color-blanco);
         }
 
-        /* --- BARRA DE NAVEGACIÓN --- */
+        /* --- BARRA DE NAVEGAÇÃO --- */
         .navbar {
             display: flex;
             justify-content: space-between;
@@ -188,7 +198,7 @@
         .nav-open .hamburger-icon span:nth-child(3) { top: 10px; transform: rotate(-135deg); }
 
 
-        /* --- SECCIÓN HERO --- */
+        /* --- SEÇÃO HERO --- */
         #hero {
             height: 100vh;
             display: flex;
@@ -238,7 +248,7 @@
             color: var(--color-primario);
         }
 
-        /* --- SECCIÓN PROYECTO --- */
+        /* --- SEÇÃO PROJETO --- */
         #proyecto .container {
             display: grid;
             grid-template-columns: 1fr 1fr;
@@ -254,7 +264,7 @@
 
         .project-text p { margin-left: auto; margin-right: auto; }
 
-        /* --- SECCIÓN APARTAMENTOS (CARRUSEL) --- */
+        /* --- SEÇÃO APARTAMENTOS (CARRUSEL) --- */
         #apartamentos {
             background-color: var(--color-fondo-oscuro);
             overflow: hidden; 
@@ -279,14 +289,18 @@
         }
 
         .apartment-card {
-            flex: 0 0 31%; /* Muestra 3 tarjetas y un poco de la siguiente */
-            max-width: 31%;
-            margin-right: 2rem;
+            flex: 0 0 24%; /* Muestra 4 tarjetas  */
+            max-width: 24%;
+            margin-right: 1.33%;
             background-color: var(--color-blanco);
             text-align: left;
             display: flex;
             flex-direction: column;
             transition: transform 0.3s ease;
+        }
+        
+        @media (max-width: 1100px) {
+             .apartment-card { flex: 0 0 31%; max-width: 31%; }
         }
 
         @media (max-width: 900px) {
@@ -354,7 +368,7 @@
             right: -25px;
         }
 
-        /* --- SECCIÓN UBICACIÓN --- */
+        /* --- SEÇÃO LOCALIZAÇÃO --- */
         #ubicacion {
             background-color: var(--color-fondo-claro);
             padding: 6rem 0 0; /* Modificado para eliminar el padding inferior */
@@ -383,13 +397,13 @@
             margin-right: auto;
         }
 
-        /* --- SECCIÓN SOBRE NOSOTROS --- */
+        /* --- SEÇÃO AGÊNCIA DOURO --- */
         #sobre-nos {
             background-color: var(--color-primario);
             color: var(--color-blanco);
         }
 
-        #sobre-nos h2 {
+        #sobre-nos h2, #sobre-nos h3 {
             color: var(--color-blanco);
         }
         
@@ -400,57 +414,7 @@
             margin-right: auto;
         }
         
-        .brokers-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 2rem;
-            max-width: 600px;
-            margin: 4rem auto 0 auto;
-        }
-
-        .broker-card {
-            background-color: var(--color-blanco);
-            text-align: center;
-            padding: 0 0 2rem 0;
-            overflow: hidden;
-        }
-        
-        .broker-card img {
-            width: 100%;
-            height: auto;
-            display: block;
-            margin-bottom: 1.5rem;
-        }
-
-        .broker-card h3 {
-            color: var(--color-primario);
-            font-size: 1.25rem;
-            margin: 0;
-        }
-
-        .broker-buttons {
-            display: flex;
-            justify-content: center;
-            gap: 1.5rem;
-            margin-top: 1rem;
-        }
-        
-        .broker-buttons a {
-            color: var(--color-primario);
-            opacity: 0.6;
-            transition: opacity 0.3s ease;
-        }
-
-        .broker-buttons a:hover {
-            opacity: 1;
-        }
-
-        .broker-buttons svg {
-            width: 24px;
-            height: 24px;
-        }
-        
-        /* --- SECCIÓN CONTACTO --- */
+        /* --- SEÇÃO CONTACTO --- */
         #contacto {
             background-color: var(--color-fondo-oscuro);
         }
@@ -528,6 +492,80 @@
             font-size: 0.9rem;
         }
 
+        /* --- ESTILOS MODAL --- */
+        .modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            visibility: hidden;
+            z-index: 2000;
+            transition: opacity 0.3s ease, visibility 0.3s ease;
+        }
+
+        .modal.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .modal-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.7);
+            cursor: pointer;
+        }
+
+        .modal-content {
+            position: relative;
+            background-color: var(--color-blanco);
+            padding: 3rem;
+            width: 90%;
+            max-width: 800px;
+            max-height: 85vh;
+            overflow-y: auto;
+            z-index: 2001;
+            transform: scale(0.9);
+            transition: transform 0.3s ease;
+        }
+        
+        .modal.active .modal-content {
+            transform: scale(1);
+        }
+
+        .modal-close {
+            position: absolute;
+            top: 1rem;
+            right: 1.5rem;
+            background: none;
+            border: none;
+            font-size: 2.5rem;
+            color: #aaa;
+            cursor: pointer;
+            line-height: 1;
+            transition: color 0.3s ease;
+        }
+
+        .modal-close:hover {
+            color: var(--color-primario);
+        }
+
+        #modal-body h4 {
+            font-size: 1.2rem;
+            margin-top: 2rem;
+            margin-bottom: 1rem;
+            border-bottom: 1px solid #eee;
+            padding-bottom: 0.5rem;
+        }
+
+
         /* --- ESTILOS PARA MÓVIL (RESPONSIVE) --- */
         @media (max-width: 768px) {
             h2 { font-size: 2rem; }
@@ -550,18 +588,19 @@
             .contact-form { grid-template-columns: 1fr; }
             .hero-content { padding: 0 2rem 2rem 2rem; } /* Padding inferior reducido para móvil */
             .carousel-btn { display: none; } /* Oculta botones en móvil, se usa swipe */
+            .modal-content { width: 95%; padding: 2rem 1.5rem; }
         }
     </style>
 </head>
 <body>
 
     <!-- =======================
-              BARRA DE NAVEGACIÓN
+              BARRA DE NAVEGAÇÃO
          ======================== -->
     <header>
         <nav class="navbar" id="navbar">
             <a href="#hero" class="nav-logo">
-                <img src="https://raw.githubusercontent.com/wagmimedia/campoalegre1024/refs/heads/main/Logo-Campo-Alegre_bigger.png" alt="Logo Campo Alegre 1024">
+                <img src="https://raw.githubusercontent.com/wagmimedia/campoalegre1024/refs/heads/main/Logo%20DOURO%20Transparent.png" alt="Logo Agência Douro">
             </a>
             <ul class="nav-links" id="nav-menu">
                 <li><a href="#proyecto" data-translate="nav_proyecto">O Projeto</a></li>
@@ -578,7 +617,7 @@
 
     <main>
 
-        <!-- ======================= SECCIÓN HERO ======================== -->
+        <!-- ======================= SEÇÃO HERO ======================== -->
         <section id="hero">
             <div class="hero-content">
                 <h1 data-translate="hero_titulo">Viver no Coração da Cidade</h1>
@@ -587,7 +626,7 @@
             </div>
         </section>
 
-        <!-- ======================= SECCIÓN PROYECTO ======================== -->
+        <!-- ======================= SEÇÃO PROJETO ======================== -->
         <section id="proyecto">
             <div class="container">
                 <div class="project-text">
@@ -601,81 +640,45 @@
             </div>
         </section>
 
-        <!-- ======================= SECCIÓN APARTAMENTOS ======================== -->
+        <!-- ======================= SEÇÃO APARTAMENTOS ======================== -->
         <section id="apartamentos">
             <div class="container">
-                <h2 data-translate="apartamentos_titulo">Tipologias Disponíveis</h2>
+                <h2 data-translate="apartamentos_titulo">Apartamentos Destacados</h2>
                 <div class="carousel-wrapper">
                     <div class="apartments-carousel" id="apartments-carousel">
-                        <!-- Card T1 -->
+                        <!-- Card Penthouse T5 -->
                         <div class="apartment-card">
-                            <div class="apartment-image-placeholder" style="background-image: url('https://placehold.co/400x300/e0e0e0/aaa?text=Apartamento');"></div>
+                            <div class="apartment-image-placeholder" style="background-image: url('https://raw.githubusercontent.com/wagmimedia/campoalegre1024/refs/heads/main/QUARTO_ULTIMO-PISO-1-2048x1205.jpg');"></div>
+                            <div class="apartment-card-content">
+                                <h3 data-translate="apt_penthouse_title">Penthouse T5</h3>
+                                <p data-translate="apt_penthouse_desc">231 m² | 2.250.000 €</p>
+                                <a href="#" class="btn" data-translate="btn_detalhes" data-apartment-id="penthouse">Mais detalhes</a>
+                            </div>
+                        </div>
+                        <!-- Card Moradia T2+1 -->
+                        <div class="apartment-card">
+                            <div class="apartment-image-placeholder" style="background-image: url('https://raw.githubusercontent.com/wagmimedia/campoalegre1024/refs/heads/main/DUPLEX_SALA.jpg');"></div>
+                            <div class="apartment-card-content">
+                                <h3 data-translate="apt_moradia_title">Moradia T2+1</h3>
+                                <p data-translate="apt_moradia_desc">164,50 m² | 1.215.000 €</p>
+                                <a href="#" class="btn" data-translate="btn_detalhes">Mais detalhes</a>
+                            </div>
+                        </div>
+                        <!-- Card Apartamento Pátio T2 -->
+                        <div class="apartment-card">
+                            <div class="apartment-image-placeholder" style="background-image: url('https://raw.githubusercontent.com/wagmimedia/campoalegre1024/refs/heads/main/COZINHA_QUARTO-2048x1367.jpg');"></div>
+                            <div class="apartment-card-content">
+                                <h3 data-translate="apt_patio_title">Apartamento Pátio T2</h3>
+                                <p data-translate="apt_patio_desc">89,50 m² | 720.000 €</p>
+                                <a href="#" class="btn" data-translate="btn_detalhes">Mais detalhes</a>
+                            </div>
+                        </div>
+                        <!-- Card Apartamento T1 -->
+                        <div class="apartment-card">
+                            <div class="apartment-image-placeholder" style="background-image: url('https://raw.githubusercontent.com/wagmimedia/campoalegre1024/refs/heads/main/COZINHA.jpg');"></div>
                             <div class="apartment-card-content">
                                 <h3 data-translate="apt_t1_title">Apartamento T1</h3>
-                                <p data-translate="apt_t1_desc">Ideal para indivíduos ou casais. Espaços otimizados com acabamentos de alta qualidade e design moderno.</p>
-                                <a href="#" class="btn" data-translate="btn_detalhes">Mais detalhes</a>
-                            </div>
-                        </div>
-                        <!-- Card T1+1 -->
-                        <div class="apartment-card">
-                            <div class="apartment-image-placeholder" style="background-image: url('https://placehold.co/400x300/e0e0e0/aaa?text=Apartamento');"></div>
-                            <div class="apartment-card-content">
-                                <h3 data-translate="apt_t1plus1_title">Apartamento T1+1</h3>
-                                <p data-translate="apt_t1plus1_desc">A versatilidade de um espaço extra, perfeito para um escritório ou um quarto de hóspedes.</p>
-                                <a href="#" class="btn" data-translate="btn_detalhes">Mais detalhes</a>
-                            </div>
-                        </div>
-                        <!-- Card T2 -->
-                        <div class="apartment-card">
-                            <div class="apartment-image-placeholder" style="background-image: url('https://placehold.co/400x300/e0e0e0/aaa?text=Apartamento');"></div>
-                            <div class="apartment-card-content">
-                                <h3 data-translate="apt_t2_title">Apartamento T2</h3>
-                                <p data-translate="apt_t2_desc">Perfeito para famílias pequenas. Amplitude, luminosidade e conforto em cada canto.</p>
-                                <a href="#" class="btn" data-translate="btn_detalhes">Mais detalhes</a>
-                            </div>
-                        </div>
-                        <!-- Card T2+1 -->
-                        <div class="apartment-card">
-                            <div class="apartment-image-placeholder" style="background-image: url('https://placehold.co/400x300/e0e0e0/aaa?text=Apartamento');"></div>
-                            <div class="apartment-card-content">
-                                <h3 data-translate="apt_t2plus1_title">Apartamento T2+1</h3>
-                                <p data-translate="apt_t2plus1_desc">Conforto familiar com a flexibilidade de um quarto adicional para as suas necessidades.</p>
-                                <a href="#" class="btn" data-translate="btn_detalhes">Mais detalhes</a>
-                            </div>
-                        </div>
-                        <!-- Card T3 -->
-                        <div class="apartment-card">
-                            <div class="apartment-image-placeholder" style="background-image: url('https://placehold.co/400x300/e0e0e0/aaa?text=Apartamento');"></div>
-                            <div class="apartment-card-content">
-                                <h3 data-translate="apt_t3_title">Apartamento T3</h3>
-                                <p data-translate="apt_t3_desc">O espaço de que a sua família necessita. Vistas desafogadas e uma distribuição excecional.</p>
-                                <a href="#" class="btn" data-translate="btn_detalhes">Mais detalhes</a>
-                            </div>
-                        </div>
-                        <!-- Card T3+1 -->
-                        <div class="apartment-card">
-                            <div class="apartment-image-placeholder" style="background-image: url('https://placehold.co/400x300/e0e0e0/aaa?text=Apartamento');"></div>
-                            <div class="apartment-card-content">
-                                <h3 data-translate="apt_t3plus1_title">Apartamento T3+1</h3>
-                                <p data-translate="apt_t3plus1_desc">Amplas áreas sociais e privacidade, com um espaço extra para máxima comodidade.</p>
-                                <a href="#" class="btn" data-translate="btn_detalhes">Mais detalhes</a>
-                            </div>
-                        </div>
-                        <!-- Card T5 -->
-                        <div class="apartment-card">
-                            <div class="apartment-image-placeholder" style="background-image: url('https://placehold.co/400x300/e0e0e0/aaa?text=Apartamento');"></div>
-                            <div class="apartment-card-content">
-                                <h3 data-translate="apt_t5_title">Apartamento T5</h3>
-                                <p data-translate="apt_t5_desc">Exclusividade e luxo no seu expoente máximo. Um apartamento generoso em área e conforto.</p>
-                                <a href="#" class="btn" data-translate="btn_detalhes">Mais detalhes</a>
-                            </div>
-                        </div>
-                        <!-- Card Moradia -->
-                        <div class="apartment-card">
-                            <div class="apartment-image-placeholder" style="background-image: url('https://placehold.co/400x300/e0e0e0/aaa?text=Apartamento');"></div>
-                            <div class="apartment-card-content">
-                                <h3 data-translate="apt_moradia_title">Moradia</h3>
-                                <p data-translate="apt_moradia_desc">A privacidade de uma casa com a segurança e as comodidades de um condomínio de luxo.</p>
+                                <p data-translate="apt_t1_desc">52 m² | 400.000 €</p>
                                 <a href="#" class="btn" data-translate="btn_detalhes">Mais detalhes</a>
                             </div>
                         </div>
@@ -686,7 +689,7 @@
             </div>
         </section>
         
-        <!-- ======================= SECCIÓN UBICACIÓN ======================== -->
+        <!-- ======================= SEÇÃO LOCALIZAÇÃO ======================== -->
         <section id="ubicacion">
             <div class="container">
                 <h2 data-translate="ubicacion_titulo">Localização Privilegiada</h2>
@@ -697,36 +700,17 @@
             </div>
         </section>
 
-        <!-- ======================= SECCIÓN SOBRE NOSOTROS ======================== -->
+        <!-- ======================= SEÇÃO AGÊNCIA DOURO ======================== -->
         <section id="sobre-nos">
             <div class="container">
                 <h2 data-translate="agencia_titulo">Agência Douro</h2>
                 <p data-translate="agencia_desc">Na Agência Douro, a nossa missão é transformar sonhos em realidade, sempre com um compromisso inabalável com a transparência e a responsabilidade. A nossa equipa é composta por profissionais altamente qualificados, prontos para o ajudar a realizar o sonho da sua vida.</p>
-                
-                <div class="brokers-grid">
-                    <!-- Broker 1 -->
-                    <div class="broker-card">
-                        <img src="https://placehold.co/400x500/e0e0e0/aaa?text=Vania" alt="Retrato de Vania Fernandes">
-                        <h3>Vania Fernandes</h3>
-                        <div class="broker-buttons">
-                            <a href="mailto:vania.fernandes@example.com" aria-label="Email"><i data-feather="mail"></i></a>
-                            <a href="https://wa.me/351000000000" target="_blank" aria-label="WhatsApp"><i data-feather="message-circle"></i></a>
-                        </div>
-                    </div>
-                    <!-- Broker 2 -->
-                    <div class="broker-card">
-                        <img src="https://placehold.co/400x500/e0e0e0/aaa?text=Maria" alt="Retrato de Maria Martins">
-                        <h3>Maria Martins</h3>
-                        <div class="broker-buttons">
-                            <a href="mailto:maria.martins@example.com" aria-label="Email"><i data-feather="mail"></i></a>
-                            <a href="https://wa.me/351000000001" target="_blank" aria-label="WhatsApp"><i data-feather="message-circle"></i></a>
-                        </div>
-                    </div>
-                </div>
+                <h3 data-translate="agencia_subtitle" style="text-align: center; font-size: 1.5rem; margin-top: 3rem; font-weight: 600;">Porque escolher a Agência Douro?</h3>
+                <p data-translate="agencia_desc2">A atuar no mercado nacional e internacional, a Agência Douro é reconhecida pela sua transparência, responsabilidade e compromisso em proporcionar tranquilidade em cada transação. Seja para habitação própria ou para investimento, oferecemos um apoio completo para garantir que o seu negócio seja seguro e eficaz.</p>
             </div>
         </section>
 
-        <!-- ======================= SECCIÓN CONTACTO ======================== -->
+        <!-- ======================= SEÇÃO CONTACTO ======================== -->
         <section id="contacto">
             <div class="container">
                 <h2 data-translate="contacto_titulo">Contacto</h2>
@@ -756,6 +740,18 @@
             <p data-translate="footer_copy">&copy; 2025 Campo Alegre 1024. Todos os direitos reservados.</p>
         </div>
     </footer>
+
+    <!-- ======================= MODAL ======================== -->
+    <div class="modal" id="apartment-modal">
+        <div class="modal-overlay"></div>
+        <div class="modal-content">
+            <button class="modal-close" aria-label="Fechar">&times;</button>
+            <div id="modal-body">
+                <!-- Conteúdo do Modal será injetado aqui via JavaScript -->
+            </div>
+        </div>
+    </div>
+
 
     <!-- Feather Icons -->
     <script src="https://unpkg.com/feather-icons"></script>
@@ -798,7 +794,6 @@
         // --- SCRIPT HERO SLIDESHOW ---
         const heroSection = document.getElementById('hero');
         
-        // **AQUÍ PUEDES AÑADIR TUS ENLACES DE IMAGEN**
         const heroImages = [
             'https://raw.githubusercontent.com/wagmimedia/campoalegre1024/refs/heads/main/EXT-8.jpg',
             'https://raw.githubusercontent.com/wagmimedia/campoalegre1024/refs/heads/main/EXT-7.jpg',
@@ -829,7 +824,7 @@
         }
 
 
-        // --- SCRIPT DE TRADUCCIÓN ---
+        // --- SCRIPT DE TRADUCCIÓN Y MODAL ---
         document.addEventListener('DOMContentLoaded', () => {
             const translations = {
                 'pt': {
@@ -844,35 +839,61 @@
                     proyecto_titulo: 'Design e Exclusividade',
                     proyecto_p1: 'O Campo Alegre 1024 é um empreendimento residencial com uma arquitetura contemporânea, de linhas retas e sóbrias, que se integra harmoniosamente nos jardins circundantes. O piso do átrio principal dispõe de um oásis de lazer e descontração com diversas salas sociais, de wellness e jardins privados.',
                     proyecto_p2: 'Os 30 apartamentos, com tipologias de T1 a T5, combinam modernidade e funcionalidade, criando ambientes confortáveis para quem procura o bem-estar. Todas as habitações, das quais duas moradias e duas penthouses, têm uma forte relação com os espaços exteriores.',
-                    apartamentos_titulo: 'Tipologias Disponíveis',
+                    apartamentos_titulo: 'Apartamentos Destacados',
                     btn_detalhes: 'Mais detalhes',
+                    apt_penthouse_title: 'Penthouse T5',
+                    apt_penthouse_desc: '231 m² | 2.250.000 €',
+                    apt_moradia_title: 'Moradia T2+1',
+                    apt_moradia_desc: '164,50 m² | 1.215.000 €',
+                    apt_patio_title: 'Apartamento Pátio T2',
+                    apt_patio_desc: '89,50 m² | 720.000 €',
                     apt_t1_title: 'Apartamento T1',
-                    apt_t1_desc: 'Ideal para indivíduos ou casais. Espaços otimizados com acabamentos de alta qualidade e design moderno.',
-                    apt_t1plus1_title: 'Apartamento T1+1',
-                    apt_t1plus1_desc: 'A versatilidade de um espaço extra, perfeito para um escritório ou um quarto de hóspedes.',
-                    apt_t2_title: 'Apartamento T2',
-                    apt_t2_desc: 'Perfeito para famílias pequenas. Amplitude, luminosidade e conforto em cada canto.',
-                    apt_t2plus1_title: 'Apartamento T2+1',
-                    apt_t2plus1_desc: 'Conforto familiar com a flexibilidade de um quarto adicional para as suas necessidades.',
-                    apt_t3_title: 'Apartamento T3',
-                    apt_t3_desc: 'O espaço de que a sua família necessita. Vistas desafogadas e uma distribuição excecional.',
-                    apt_t3plus1_title: 'Apartamento T3+1',
-                    apt_t3plus1_desc: 'Amplas áreas sociais e privacidade, com um espaço extra para máxima comodidade.',
-                    apt_t5_title: 'Apartamento T5',
-                    apt_t5_desc: 'Exclusividade e luxo no seu expoente máximo. Um apartamento generoso em área e conforto.',
-                    apt_moradia_title: 'Moradia',
-                    apt_moradia_desc: 'A privacidade de uma casa com a segurança e as comodidades de um condomínio de luxo.',
+                    apt_t1_desc: '52 m² | 400.000 €',
                     ubicacion_titulo: 'Localização Privilegiada',
                     ubicacion_desc: 'Situado na prestigiada zona do Campo Alegre, com acesso imediato aos principais serviços, zonas verdes, centros culturais e vias de comunicação da cidade. Uma localização que combina tranquilidade e vida urbana.',
                     agencia_titulo: 'Agência Douro',
                     agencia_desc: 'Na Agência Douro, a nossa missão é transformar sonhos em realidade, sempre com um compromisso inabalável com a transparência e a responsabilidade. A nossa equipa é composta por profissionais altamente qualificados, prontos para o ajudar a realizar o sonho da sua vida.',
+                    agencia_subtitle: 'Porque escolher a Agência Douro?',
+                    agencia_desc2: 'A atuar no mercado nacional e internacional, a Agência Douro é reconhecida pela sua transparência, responsabilidade e compromisso em proporcionar tranquilidade em cada transação. Seja para habitação própria ou para investimento, oferecemos um apoio completo para garantir que o seu negócio seja seguro e eficaz.',
                     contacto_titulo: 'Contacto',
                     contacto_desc: 'Interessado em saber mais? Deixe-nos a sua mensagem e entraremos em contacto consigo o mais brevemente possível para lhe fornecer toda a informação de que necessita.',
                     form_nombre: 'Nome Completo',
                     form_email: 'Endereço de Email',
                     form_mensaje: 'A sua mensagem',
                     form_btn: 'Enviar Mensagem',
-                    footer_copy: '© 2025 Campo Alegre 1024. Todos os direitos reservados.'
+                    footer_copy: '© 2025 Campo Alegre 1024. Todos os direitos reservados.',
+                    // Detalles del Modal
+                    penthouse_details: {
+                        title: 'Detalhes da Penthouse T5',
+                        desc: 'Apartamento T5 com 231,00 m² de área bruta privativa, 120,00 m² de área exterior composta por um terraço de 107,00 m² e uma piscina de 13,00 m², box com portão motorizado com 4 lugares de estacionamento e arrecadação.',
+                        subtitle1: 'Características do Imóvel:',
+                        features1: [
+                            '05 quartos, dos quais 04 são suítes completas',
+                            '05 casas de banho, das quais 01 é de serviço',
+                            'Sala de estar',
+                            'Sala de jantar',
+                            'Escritório',
+                            'Cozinha independente equipada com eletrodomésticos Bosch',
+                            'Lavandaria',
+                            'Terraço, com 107,00 m² com acesso pelo escritório, biblioteca e sala de estar, e com uma área privada para a suíte principal',
+                            'Piscina privada com 13,00 m²',
+                            'Box com 4 lugares de estacionamento',
+                            'Arrecadação',
+                            'Orientação solar: nascente/poente'
+                        ],
+                        subtitle2: 'Características de acabamentos e equipamentos:',
+                        features2: [
+                            'Caixilharia de alumínio com corte térmico',
+                            'Cozinha equipada com eletrodomésticos Bosch',
+                            'Domótica',
+                            'Ar condicionado por condutas',
+                            'Box com portão motorizado',
+                            'Pré-instalação para carregamento de veículos elétricos',
+                            'Parque para bicicletas',
+                            'Bomba de calor para aquecimento de águas sanitárias',
+                            'Elevadores do tipo Schmitt + Sohn'
+                        ]
+                    }
                 },
                 'es': {
                     nav_proyecto: 'El Proyecto',
@@ -886,35 +907,61 @@
                     proyecto_titulo: 'Diseño y Exclusividad',
                     proyecto_p1: 'Campo Alegre 1024 es un desarrollo residencial con una arquitectura contemporánea, de líneas rectas y sobrias, que se integra armoniosamente en los jardines circundantes. La planta del vestíbulo principal cuenta con un oasis de ocio y relajación con varias salas sociales, de bienestar y jardines privados.',
                     proyecto_p2: 'Los 30 apartamentos, con tipologías de T1 a T5, combinan modernidad y funcionalidad, creando ambientes confortables para quienes buscan el bienestar. Todas las viviendas, de las cuales dos son villas y dos son áticos, tienen una fuerte relación con los espacios exteriores.',
-                    apartamentos_titulo: 'Tipologías Disponibles',
+                    apartamentos_titulo: 'Apartamentos Destacados',
                     btn_detalhes: 'Más detalles',
+                    apt_penthouse_title: 'Penthouse T5',
+                    apt_penthouse_desc: '231 m² | 2.250.000 €',
+                    apt_moradia_title: 'Villa T2+1',
+                    apt_moradia_desc: '164,50 m² | 1.215.000 €',
+                    apt_patio_title: 'Apartamento con Patio T2',
+                    apt_patio_desc: '89,50 m² | 720.000 €',
                     apt_t1_title: 'Apartamento T1',
-                    apt_t1_desc: 'Ideal para individuos o parejas. Espacios optimizados con acabados de alta calidad y diseño moderno.',
-                    apt_t1plus1_title: 'Apartamento T1+1',
-                    apt_t1plus1_desc: 'La versatilidad de un espacio extra, perfecto para una oficina o un cuarto de invitados.',
-                    apt_t2_title: 'Apartamento T2',
-                    apt_t2_desc: 'Perfecto para familias pequeñas. Amplitud, luminosidad y confort en cada rincón.',
-                    apt_t2plus1_title: 'Apartamento T2+1',
-                    apt_t2plus1_desc: 'Confort familiar con la flexibilidad de una habitación adicional para sus necesidades.',
-                    apt_t3_title: 'Apartamento T3',
-                    apt_t3_desc: 'El espacio que tu familia necesita. Vistas despejadas y una distribución excepcional.',
-                    apt_t3plus1_title: 'Apartamento T3+1',
-                    apt_t3plus1_desc: 'Amplias áreas sociales y privacidad, con un espacio extra para máxima comodidad.',
-                    apt_t5_title: 'Apartamento T5',
-                    apt_t5_desc: 'Exclusividad y lujo en su máximo exponente. Un apartamento generoso en área y confort.',
-                    apt_moradia_title: 'Villa',
-                    apt_moradia_desc: 'La privacidad de una casa con la seguridad y las comodidades de un condominio de lujo.',
+                    apt_t1_desc: '52 m² | 400.000 €',
                     ubicacion_titulo: 'Ubicación Privilegiada',
                     ubicacion_desc: 'Situado en la prestigiosa zona de Campo Alegre, con acceso inmediato a los principales servicios, zonas verdes, centros culturales y vías de comunicación de la ciudad. Una localización que combina tranquilidad y vida urbana.',
                     agencia_titulo: 'Agencia Douro',
                     agencia_desc: 'En Agência Douro, nuestra misión es convertir los sueños en realidad, siempre con un compromiso inquebrantable con la transparencia y la responsabilidad. Nuestro equipo está compuesto por profesionales altamente cualificados, listos para ayudarle a realizar el sueño de su vida.',
+                    agencia_subtitle: '¿Por qué elegir Agência Douro?',
+                    agencia_desc2: 'Operando tanto en el mercado nacional como en el internacional, Agência Douro es reconocida por su transparencia, responsabilidad y compromiso de proporcionar tranquilidad en cada transacción. Ya sea para vivienda propia o para inversión, ofrecemos un apoyo integral para garantizar que su negocio sea seguro y eficaz.',
                     contacto_titulo: 'Contacto',
                     contacto_desc: '¿Interesado en saber más? Déjanos tu mensaje y te contactaremos a la brevedad para ofrecerte toda la información que necesites.',
                     form_nombre: 'Nombre Completo',
                     form_email: 'Correo Electrónico',
                     form_mensaje: 'Tu mensaje',
                     form_btn: 'Enviar Mensaje',
-                    footer_copy: '© 2025 Campo Alegre 1024. Todos los derechos reservados.'
+                    footer_copy: '© 2025 Campo Alegre 1024. Todos los derechos reservados.',
+                     // Detalles del Modal
+                    penthouse_details: {
+                        title: 'Detalles del Penthouse T5',
+                        desc: 'Apartamento de 5 dormitorios con 231,00 m² de área bruta privada, 120,00 m² de área exterior que consta de una terraza de 107,00 m² y una piscina de 13,00 m², box con portón motorizado con 4 plazas de aparcamiento y trastero.',
+                        subtitle1: 'Características del Inmueble:',
+                        features1: [
+                           '05 dormitorios, de los cuales 04 son suites completas',
+                           '05 baños, de los cuales 01 es de servicio',
+                           'Sala de estar',
+                           'Comedor',
+                           'Despacho',
+                           'Cocina independiente equipada con electrodomésticos Bosch',
+                           'Lavandería',
+                           'Terraza, con 107,00 m² con acceso desde el despacho, la biblioteca y la sala de estar, y con un área privada para la suite principal',
+                           'Piscina privada de 13,00 m²',
+                           'Box con 4 plazas de aparcamiento',
+                           'Trastero',
+                           'Orientación solar: este/oeste'
+                        ],
+                        subtitle2: 'Características de acabados y equipamiento:',
+                        features2: [
+                            'Carpintería de aluminio con rotura de puente térmico',
+                            'Cocina equipada con electrodomésticos Bosch',
+                            'Domótica',
+                            'Aire acondicionado por conductos',
+                            'Box con portón motorizado',
+                            'Preinstalación para carga de vehículos eléctricos',
+                            'Aparcamiento para bicicletas',
+                            'Bomba de calor para calentamiento de aguas sanitarias',
+                            'Ascensores tipo Schmitt + Sohn'
+                        ]
+                    }
                 },
                 'en': {
                     nav_proyecto: 'The Project',
@@ -928,55 +975,120 @@
                     proyecto_titulo: 'Design and Exclusivity',
                     proyecto_p1: 'Campo Alegre 1024 is a residential development with a contemporary architecture of straight, sober lines that blend harmoniously into the surrounding gardens. The main lobby floor features an oasis of leisure and relaxation with several social rooms, a wellness area, and private gardens.',
                     proyecto_p2: 'The 30 apartments, ranging from T1 to T5, combine modernity and functionality, creating comfortable environments for those seeking well-being. All homes, including two villas and two penthouses, have a strong connection to the outdoor spaces.',
-                    apartamentos_titulo: 'Available Typologies',
+                    apartamentos_titulo: 'Featured Apartments',
                     btn_detalhes: 'More details',
+                    apt_penthouse_title: 'Penthouse T5',
+                    apt_penthouse_desc: '231 m² | €2,250,000',
+                    apt_moradia_title: 'Villa T2+1',
+                    apt_moradia_desc: '164.50 m² | €1,215,000',
+                    apt_patio_title: 'Patio Apartment T2',
+                    apt_patio_desc: '89.50 m² | €720,000',
                     apt_t1_title: '1-Bedroom Apartment',
-                    apt_t1_desc: 'Ideal for individuals or couples. Optimized spaces with high-quality finishes and modern design.',
-                    apt_t1plus1_title: '1-Bedroom+1 Apartment',
-                    apt_t1plus1_desc: 'The versatility of an extra space, perfect for an office or a guest room.',
-                    apt_t2_title: '2-Bedroom Apartment',
-                    apt_t2_desc: 'Perfect for small families. Spaciousness, brightness, and comfort in every corner.',
-                    apt_t2plus1_title: '2-Bedroom+1 Apartment',
-                    apt_t2plus1_desc: 'Family comfort with the flexibility of an additional room for your needs.',
-                    apt_t3_title: '3-Bedroom Apartment',
-                    apt_t3_desc: 'The space your family needs. Unobstructed views and an exceptional layout.',
-                    apt_t3plus1_title: '3-Bedroom+1 Apartment',
-                    apt_t3plus1_desc: 'Large social areas and privacy, with an extra space for maximum convenience.',
-                    apt_t5_title: '5-Bedroom Apartment',
-                    apt_t5_desc: 'Exclusivity and luxury at its finest. A generous apartment in area and comfort.',
-                    apt_moradia_title: 'Villa',
-                    apt_moradia_desc: 'The privacy of a house with the security and amenities of a luxury condominium.',
+                    apt_t1_desc: '52 m² | €400,000',
                     ubicacion_titulo: 'Privileged Location',
                     ubicacion_desc: 'Located in the prestigious area of Campo Alegre, with immediate access to the main services, green areas, cultural centers, and communication routes of the city. A location that combines tranquility and urban life.',
                     agencia_titulo: 'Douro Agency',
                     agencia_desc: "At Agência Douro, our mission is to turn dreams into reality, always with an unwavering commitment to transparency and accountability. Our team is comprised of highly qualified professionals, ready to help you realize your life's dream.",
+                    agencia_subtitle: 'Why choose Agência Douro?',
+                    agencia_desc2: 'Operating in both the national and international markets, Agência Douro is recognized for its transparency, responsibility, and commitment to providing peace of mind in every transaction. Whether for homeownership or investment, we offer comprehensive support to ensure your business is safe and effective.',
                     contacto_titulo: 'Contact',
                     contacto_desc: 'Interested in learning more? Leave us your message, and we will contact you shortly to provide you with all the information you need.',
                     form_nombre: 'Full Name',
                     form_email: 'Email Address',
                     form_mensaje: 'Your message',
                     form_btn: 'Send Message',
-                    footer_copy: '© 2025 Campo Alegre 1024. All rights reserved.'
+                    footer_copy: '© 2025 Campo Alegre 1024. All rights reserved.',
+                    // Detalles del Modal
+                    penthouse_details: {
+                        title: 'Penthouse T5 Details',
+                        desc: '5-bedroom apartment with 231.00 m² of private gross area, 120.00 m² of outdoor area consisting of a 107.00 m² terrace and a 13.00 m² swimming pool, box with motorized gate with 4 parking spaces and storage.',
+                        subtitle1: 'Property Features:',
+                        features1: [
+                            '05 bedrooms, 04 of which are complete suites',
+                            '05 bathrooms, 01 of which is a service bathroom',
+                            'Living room',
+                            'Dining room',
+                            'Desk',
+                            'Independent kitchen equipped with Bosch appliances',
+                            'Laundry',
+                            'Terrace, with 107.00 m² with access from the office, library and living room, and with a private area for the master suite',
+                            'Private swimming pool measuring 13.00 m²',
+                            'Box with 4 parking spaces',
+                            'Storage',
+                            'Solar orientation: east/west'
+                        ],
+                        subtitle2: 'Features of finishes and equipment:',
+                        features2: [
+                            'Aluminum frames with thermal break',
+                            'Kitchen equipped with Bosch appliances',
+                            'Home automation',
+                            'Duct air conditioning',
+                            'Box with motorized gate',
+                            'Pre-installation for charging electric vehicles',
+                            'Bicycle park',
+                            'Heat pump for heating sanitary water',
+                            'Schmitt + Sohn type elevators'
+                        ]
+                    }
                 }
             };
 
-            const userLang = navigator.language.slice(0, 2) || 'pt';
+            const userLang = (navigator.language || navigator.userLanguage).slice(0, 2);
             const lang = translations[userLang] ? userLang : 'pt';
             
             document.documentElement.lang = lang;
 
-            document.querySelectorAll('[data-translate]').forEach(el => {
-                const key = el.getAttribute('data-translate');
-                if (translations[lang][key]) {
-                    el.textContent = translations[lang][key];
-                }
+            function translatePage() {
+                document.querySelectorAll('[data-translate]').forEach(el => {
+                    const key = el.getAttribute('data-translate');
+                    if (translations[lang][key]) {
+                        el.textContent = translations[lang][key];
+                    }
+                });
+
+                document.querySelectorAll('[data-translate-placeholder]').forEach(el => {
+                    const key = el.getAttribute('data-translate-placeholder');
+                    if (translations[lang][key]) {
+                        el.placeholder = translations[lang][key];
+                    }
+                });
+            }
+            
+            translatePage();
+            
+            // --- LÓGICA DEL MODAL ---
+            const modal = document.getElementById('apartment-modal');
+            const modalBody = document.getElementById('modal-body');
+            const detailButtons = document.querySelectorAll('[data-apartment-id]');
+
+            detailButtons.forEach(button => {
+                button.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    const apartmentId = button.getAttribute('data-apartment-id');
+                    
+                    if (apartmentId === 'penthouse') {
+                        const details = translations[lang].penthouse_details;
+                        let contentHTML = `<h2>${details.title}</h2><p>${details.desc}</p>`;
+                        
+                        contentHTML += `<h4>${details.subtitle1}</h4><ul>`;
+                        details.features1.forEach(item => contentHTML += `<li>${item}</li>`);
+                        contentHTML += `</ul>`;
+
+                        contentHTML += `<h4>${details.subtitle2}</h4><ul>`;
+                        details.features2.forEach(item => contentHTML += `<li>${item}</li>`);
+                        contentHTML += `</ul>`;
+
+                        modalBody.innerHTML = contentHTML;
+                        modal.classList.add('active');
+                    }
+                });
             });
 
-            document.querySelectorAll('[data-translate-placeholder]').forEach(el => {
-                const key = el.getAttribute('data-translate-placeholder');
-                if (translations[lang][key]) {
-                    el.placeholder = translations[lang][key];
-                }
+            modal.querySelector('.modal-overlay').addEventListener('click', () => {
+                modal.classList.remove('active');
+            });
+             modal.querySelector('.modal-close').addEventListener('click', () => {
+                modal.classList.remove('active');
             });
             
             // Reemplaza los data-feather-iconos por SVGs
