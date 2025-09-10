@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Campo Alegre 1024 | Projeto Imobiliário</title>
+    <title>Agência Douro | Projeto Imobiliário</title>
     <link rel="icon" href="https://raw.githubusercontent.com/wagmimedia/campoalegre1024/refs/heads/main/Logo%20DOURO%20Transparent1.png" type="image/png">
     
     <!-- Google Fonts: Montserrat para títulos y Lato para texto -->
@@ -95,12 +95,21 @@
             font-weight: 600;
             font-family: var(--fuente-titulos);
             transition: all 0.3s ease;
+            cursor: pointer;
         }
 
         .btn:hover {
             background-color: var(--color-primario);
             color: var(--color-blanco);
         }
+        
+        .btn:disabled {
+            background-color: #ccc;
+            border-color: #ccc;
+            color: #666;
+            cursor: not-allowed;
+        }
+
 
         /* --- BARRA DE NAVEGAÇÃO --- */
         .navbar {
@@ -525,15 +534,21 @@
 
         .contact-form button {
             width: auto;
-            cursor: pointer;
-            background-color: var(--color-primario);
-            color: var(--color-blanco);
-            border-color: var(--color-primario);
         }
-
-        .contact-form button:hover {
-            background-color: var(--color-blanco);
-            color: var(--color-primario);
+        
+        #form-status {
+            text-align: center;
+            margin-top: 1.5rem;
+            min-height: 1.5em;
+            font-weight: 600;
+        }
+        
+        .form-status-success {
+            color: #28a745;
+        }
+        
+        .form-status-error {
+            color: #dc3545;
         }
 
 
@@ -548,6 +563,17 @@
         footer p {
             margin-bottom: 0;
             font-size: 0.9rem;
+        }
+
+        footer a {
+            color: var(--color-primario);
+            font-weight: 600;
+            text-decoration: none;
+            transition: opacity 0.3s;
+        }
+
+        footer a:hover {
+            opacity: 0.7;
         }
 
         /* --- ESTILOS MODAL --- */
@@ -694,8 +720,8 @@
         <!-- ======================= SEÇÃO HERO ======================== -->
         <section id="hero">
             <div class="hero-content">
-                <h1 data-translate="hero_titulo">Viver no Coração da Cidade</h1>
-                <p data-translate="hero_subtitulo">Um projeto exclusivo que redefine a elegância urbana. Descubra a sua nova casa no Campo Alegre 1024.</p>
+                <h1 data-translate="hero_titulo">Viver no Coração do Porto</h1>
+                <p data-translate="hero_subtitulo">Um projeto exclusivo que redefine a elegância urbana. Descubra a sua nova casa no Campo Alegre.</p>
                 <a href="#proyecto" class="btn" data-translate="hero_btn">Saber mais</a>
             </div>
         </section>
@@ -705,7 +731,7 @@
             <div class="container">
                 <div class="project-text">
                     <h2 data-translate="proyecto_titulo">Design e Exclusividade</h2>
-                    <p data-translate="proyecto_p1">O Campo Alegre 1024 é um empreendimento residencial com uma arquitetura contemporânea, de linhas retas e sóbrias, que se integra harmoniosamente nos jardins circundantes. O piso do átrio principal dispõe de um oásis de lazer e descontração com diversas salas sociais, de wellness e jardins privados.</p>
+                    <p data-translate="proyecto_p1">Este é um empreendimento residencial com uma arquitetura contemporânea, de linhas retas e sóbrias, que se integra harmoniosamente nos jardins circundantes. O piso do átrio principal dispõe de um oásis de lazer e descontração com diversas salas sociais, de wellness e jardins privados.</p>
                     <p data-translate="proyecto_p2">Os 30 apartamentos, com tipologias de T1 a T5, combinam modernidade e funcionalidade, criando ambientes confortáveis para quem procura o bem-estar. Todas as habitações, das quais duas moradias e duas penthouses, têm uma forte relação com os espaços exteriores.</p>
                 </div>
                 <div class="project-image">
@@ -713,7 +739,7 @@
                 </div>
             </div>
         </section>
-
+        
         <!-- ======================= SEÇÃO AMENITIES ======================== -->
         <section id="amenities">
              <div class="amenities-carousel-wrapper">
@@ -786,7 +812,7 @@
                 <p data-translate="ubicacion_desc">Situado na prestigiada zona do Campo Alegre, com acesso imediato aos principais serviços, zonas verdes, centros culturais e vias de comunicação da cidade. Uma localização que combina tranquilidade e vida urbana.</p>
             </div>
             <div class="map-container">
-                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3004.184325875883!2d-8.64166668458197!3d41.15243897928646!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xd2465a3153c3e67%3A0x6b87e2b12a9e349d!2sR.%20do%20Campo%20Alegre%201024%2C%204150-171%20Porto!5e0!3m2!1ses!2spt!4v1662580000000!5m2!1ses!2spt" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d6008.307998687258!2d-8.64731882330765!3d41.15312377133036!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xd2465a570624777%3A0x8678786915b5722!2sCampo%20Alegre%2C%20Porto!5e0!3m2!1spt-PT!2spt!4v1725983281575!5m2!1spt-PT!2spt" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
             </div>
         </section>
 
@@ -805,7 +831,7 @@
             <div class="container">
                 <h2 data-translate="contacto_titulo">Contacto</h2>
                 <p data-translate="contacto_desc">Interessado em saber mais? Deixe-nos a sua mensagem e entraremos em contacto consigo o mais brevemente possível para lhe fornecer toda a informação de que necessita.</p>
-                <form class="contact-form" action="#" method="POST">
+                <form class="contact-form" id="contact-form">
                     <div class="form-group">
                         <input type="text" id="nombre" name="nombre" data-translate-placeholder="form_nombre" placeholder="Nome Completo" required>
                     </div>
@@ -816,8 +842,9 @@
                         <textarea id="mensaje" name="mensaje" rows="6" data-translate-placeholder="form_mensaje" placeholder="A sua mensagem" required></textarea>
                     </div>
                     <div class="form-group form-group-full" style="text-align: center;">
-                        <button type="submit" class="btn" data-translate="form_btn">Enviar Mensagem</button>
+                        <button type="submit" class="btn" id="submit-btn" data-translate="form_btn">Enviar Mensagem</button>
                     </div>
+                     <div id="form-status" class="form-group form-group-full"></div>
                 </form>
             </div>
         </section>
@@ -827,7 +854,7 @@
     <!-- ======================= FOOTER ======================== -->
     <footer>
         <div class="container">
-            <p data-translate="footer_copy">&copy; 2025 Campo Alegre 1024. Todos os direitos reservados.</p>
+            <p data-translate-html="footer_copy"></p>
         </div>
     </footer>
 
@@ -845,8 +872,42 @@
 
     <!-- Feather Icons -->
     <script src="https://unpkg.com/feather-icons"></script>
+    
+    <!-- Firebase SDKs -->
+    <script type="module">
+        // Firebase Imports
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-app.js";
+        import { getFirestore, collection, addDoc, serverTimestamp } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-firestore.js";
+        import { getAuth, signInAnonymously } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-auth.js";
+        import { getAnalytics } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-analytics.js";
 
-    <script>
+        // Your web app's Firebase configuration
+        const firebaseConfig = {
+            apiKey: "AIzaSyCshWmJrnK6yc7VpMxua01rIdF4M7O9odU",
+            authDomain: "campoalegre-b3914.firebaseapp.com",
+            projectId: "campoalegre-b3914",
+            storageBucket: "campoalegre-b3914.appspot.com",
+            messagingSenderId: "456792192654",
+            appId: "1:456792192654:web:e4a72fa914d0f1d78a3bdf",
+            measurementId: "G-WJ8MSFCTY5"
+        };
+
+        // Initialize Firebase
+        const app = initializeApp(firebaseConfig);
+        const db = getFirestore(app);
+        const auth = getAuth(app);
+        const analytics = getAnalytics(app);
+        
+        // --- Firebase Auth ---
+        async function setupAuth() {
+            try {
+                await signInAnonymously(auth);
+            } catch (error) {
+                console.error("Firebase auth error:", error);
+            }
+        }
+
+
         // --- SCRIPT PARA MENÚ MÓVIL ---
         const mobileMenuButton = document.getElementById('mobile-menu');
         const navMenu = document.getElementById('nav-menu');
@@ -933,19 +994,23 @@
 
 
         // --- SCRIPT DE TRADUCCIÓN Y MODAL ---
-        document.addEventListener('DOMContentLoaded', () => {
+        document.addEventListener('DOMContentLoaded', async () => {
+            // Setup Auth first
+            await setupAuth();
+            
             const translations = {
                 'pt': {
+                    title: 'Agência Douro | Projeto Imobiliário',
                     nav_proyecto: 'O Projeto',
                     nav_apartamentos: 'Apartamentos',
                     nav_ubicacion: 'Localização',
                     nav_agencia: 'Agência Douro',
                     nav_contacto: 'Contacto',
                     hero_titulo: 'Viver no Coração do Porto',
-                    hero_subtitulo: 'Um projeto exclusivo que redefine a elegância urbana. Descubra a sua nova casa no Campo Alegre 1024.',
+                    hero_subtitulo: 'Um projeto exclusivo que redefine a elegância urbana. Descubra a sua nova casa no Campo Alegre.',
                     hero_btn: 'Saber mais',
                     proyecto_titulo: 'Design e Exclusividade',
-                    proyecto_p1: 'O Campo Alegre 1024 é um empreendimento residencial com uma arquitetura contemporânea, de linhas retas e sóbrias, que se integra harmoniosamente nos jardins circundantes. O piso do átrio principal dispõe de um oásis de lazer e descontração com diversas salas sociais, de wellness e jardins privados.',
+                    proyecto_p1: 'Este é um empreendimento residencial com uma arquitetura contemporânea, de linhas retas e sóbrias, que se integra harmoniosamente nos jardins circundantes. O piso do átrio principal dispõe de um oásis de lazer e descontração com diversas salas sociais, de wellness e jardins privados.',
                     proyecto_p2: 'Os 30 apartamentos, com tipologias de T1 a T5, combinam modernidade e funcionalidade, criando ambientes confortáveis para quem procura o bem-estar. Todas as habitações, das quais duas moradias e duas penthouses, têm uma forte relação com os espaços exteriores.',
                     amenities_titulo: 'Comodidades',
                     apartamentos_titulo: 'Apartamentos Destacados',
@@ -970,7 +1035,9 @@
                     form_email: 'Endereço de Email',
                     form_mensaje: 'A sua mensagem',
                     form_btn: 'Enviar Mensagem',
-                    footer_copy: '© 2025 Campo Alegre 1024. Todos os direitos reservados.',
+                    footer_copy: '© 2025 <a href="https://agenciadouro.pt" target="_blank" rel="noopener noreferrer">Agência Douro</a>. Todos os direitos reservados. Powered by <a href="https://wagmimedia.agency" target="_blank" rel="noopener noreferrer">WMA</a>.',
+                    form_success: 'Mensagem enviada com sucesso!',
+                    form_error: 'Ocorreu um erro. Por favor, tente novamente.',
                     // Detalles del Modal
                     penthouse_details: {
                         title: 'Detalhes da Penthouse T5',
@@ -1005,16 +1072,17 @@
                     }
                 },
                 'es': {
+                    title: 'Agencia Douro | Proyecto Inmobiliario',
                     nav_proyecto: 'El Proyecto',
                     nav_apartamentos: 'Apartamentos',
                     nav_ubicacion: 'Ubicación',
                     nav_agencia: 'Agencia Douro',
                     nav_contacto: 'Contacto',
                     hero_titulo: 'Vivir en el Corazón de Oporto',
-                    hero_subtitulo: 'Un proyecto exclusivo que redefine la elegancia urbana. Descubre tu nuevo hogar en Campo Alegre 1024.',
+                    hero_subtitulo: 'Un proyecto exclusivo que redefine la elegancia urbana. Descubre tu nuevo hogar en Campo Alegre.',
                     hero_btn: 'Saber más',
                     proyecto_titulo: 'Diseño y Exclusividad',
-                    proyecto_p1: 'Campo Alegre 1024 es un desarrollo residencial con una arquitectura contemporánea, de líneas rectas y sobrias, que se integra armoniosamente en los jardines circundantes. La planta del vestíbulo principal cuenta con un oasis de ocio y relajación con varias salas sociales, de bienestar y jardines privados.',
+                    proyecto_p1: 'Este es un desarrollo residencial con una arquitectura contemporánea, de líneas rectas y sobrias, que se integra armoniosamente en los jardines circundantes. La planta del vestíbulo principal cuenta con un oasis de ocio y relajación con varias salas sociales, de bienestar y jardines privados.',
                     proyecto_p2: 'Los 30 apartamentos, con tipologías de T1 a T5, combinan modernidad y funcionalidad, creando ambientes confortables para quienes buscan el bienestar. Todas las viviendas, de las cuales dos son villas y dos son áticos, tienen una fuerte relación con los espacios exteriores.',
                     amenities_titulo: 'Amenidades',
                     apartamentos_titulo: 'Apartamentos Destacados',
@@ -1039,7 +1107,9 @@
                     form_email: 'Correo Electrónico',
                     form_mensaje: 'Tu mensaje',
                     form_btn: 'Enviar Mensaje',
-                    footer_copy: '© 2025 Campo Alegre 1024. Todos los derechos reservados.',
+                    footer_copy: '© 2025 <a href="https://agenciadouro.pt" target="_blank" rel="noopener noreferrer">Agencia Douro</a>. Todos los derechos reservados. Powered by <a href="https://wagmimedia.agency" target="_blank" rel="noopener noreferrer">WMA</a>.',
+                    form_success: '¡Mensaje enviado con éxito!',
+                    form_error: 'Ocurrió un error. Por favor, inténtalo de nuevo.',
                      // Detalles del Modal
                     penthouse_details: {
                         title: 'Detalles del Penthouse T5',
@@ -1074,16 +1144,17 @@
                     }
                 },
                 'en': {
+                    title: 'Douro Agency | Real Estate Project',
                     nav_proyecto: 'The Project',
                     nav_apartamentos: 'Apartments',
                     nav_ubicacion: 'Location',
                     nav_agencia: 'Douro Agency',
                     nav_contacto: 'Contact',
                     hero_titulo: 'Living in the Heart of Porto',
-                    hero_subtitulo: 'An exclusive project that redefines urban elegance. Discover your new home at Campo Alegre 1024.',
+                    hero_subtitulo: 'An exclusive project that redefines urban elegance. Discover your new home at Campo Alegre.',
                     hero_btn: 'Learn more',
                     proyecto_titulo: 'Design and Exclusivity',
-                    proyecto_p1: 'Campo Alegre 1024 is a residential development with a contemporary architecture of straight, sober lines that blend harmoniously into the surrounding gardens. The main lobby floor features an oasis of leisure and relaxation with several social rooms, a wellness area, and private gardens.',
+                    proyecto_p1: 'This is a residential development with a contemporary architecture of straight, sober lines that blend harmoniously into the surrounding gardens. The main lobby floor features an oasis of leisure and relaxation with several social rooms, a wellness area, and private gardens.',
                     proyecto_p2: 'The 30 apartments, ranging from T1 to T5, combine modernity and functionality, creating comfortable environments for those seeking well-being. All homes, including two villas and two penthouses, have a strong connection to the outdoor spaces.',
                     amenities_titulo: 'Amenities',
                     apartamentos_titulo: 'Featured Apartments',
@@ -1108,7 +1179,9 @@
                     form_email: 'Email Address',
                     form_mensaje: 'Your message',
                     form_btn: 'Send Message',
-                    footer_copy: '© 2025 Campo Alegre 1024. All rights reserved.',
+                    footer_copy: '© 2025 <a href="https://agenciadouro.pt" target="_blank" rel="noopener noreferrer">Douro Agency</a>. All rights reserved. Powered by <a href="https://wagmimedia.agency" target="_blank" rel="noopener noreferrer">WMA</a>.',
+                    form_success: 'Message sent successfully!',
+                    form_error: 'An error occurred. Please try again.',
                     // Detalles del Modal
                     penthouse_details: {
                         title: 'Penthouse T5 Details',
@@ -1150,6 +1223,8 @@
             document.documentElement.lang = lang;
 
             function translatePage() {
+                document.title = translations[lang].title;
+
                 document.querySelectorAll('[data-translate]').forEach(el => {
                     const key = el.getAttribute('data-translate');
                     if (translations[lang][key]) {
@@ -1161,6 +1236,13 @@
                     const key = el.getAttribute('data-translate-placeholder');
                     if (translations[lang][key]) {
                         el.placeholder = translations[lang][key];
+                    }
+                });
+                
+                document.querySelectorAll('[data-translate-html]').forEach(el => {
+                    const key = el.getAttribute('data-translate-html');
+                    if (translations[lang][key]) {
+                        el.innerHTML = translations[lang][key];
                     }
                 });
             }
@@ -1202,6 +1284,44 @@
                 modal.classList.remove('active');
             });
             
+            // --- LÓGICA DEL FORMULARIO DE CONTACTO ---
+            const contactForm = document.getElementById('contact-form');
+            const formStatus = document.getElementById('form-status');
+            const submitBtn = document.getElementById('submit-btn');
+
+            contactForm.addEventListener('submit', async (e) => {
+                e.preventDefault();
+                submitBtn.disabled = true;
+                formStatus.textContent = '';
+                formStatus.classList.remove('form-status-success', 'form-status-error');
+
+                const name = contactForm.nombre.value;
+                const email = contactForm.email.value;
+                const message = contactForm.mensaje.value;
+
+                try {
+                    // Guarda los datos en una colección simple
+                    await addDoc(collection(db, 'contactSubmissions'), {
+                        name: name,
+                        email: email,
+                        message: message,
+                        createdAt: serverTimestamp()
+                    });
+
+                    formStatus.textContent = translations[lang].form_success;
+                    formStatus.classList.add('form-status-success');
+                    contactForm.reset();
+
+                } catch (error) {
+                    console.error("Error adding document: ", error);
+                    formStatus.textContent = translations[lang].form_error;
+                    formStatus.classList.add('form-status-error');
+                } finally {
+                    submitBtn.disabled = false;
+                }
+            });
+
+
             // Reemplaza los data-feather-iconos por SVGs
             feather.replace();
         });
