@@ -94,6 +94,7 @@
             letter-spacing: 1px;
             font-weight: 600;
             font-family: var(--fuente-titulos);
+            font-size: 0.9rem; /* Consistencia en tamaño de fuente para botones principales */
             transition: all 0.3s ease;
             cursor: pointer;
         }
@@ -438,13 +439,20 @@
         .cta-container {
             text-align: center;
             margin-top: 3rem;
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            flex-wrap: wrap;
         }
 
         .table-container {
             max-height: 0;
             overflow: hidden;
             transition: max-height 0.7s ease-in-out;
-            overflow-x: auto; /* AÑADIDO: Permite el scroll horizontal en la tabla */
+        }
+        
+        .table-wrapper {
+             overflow-x: auto; /* AÑADIDO: Permite el scroll horizontal en la tabla */
             -webkit-overflow-scrolling: touch; /* Mejora el scroll en iOS */
         }
 
@@ -902,52 +910,56 @@
                 </div>
 
                 <div class="table-container" id="apartments-table-container">
-                    <table class="apartments-table">
-                        <thead>
-                            <tr>
-                                <th data-translate="th_natureza">Natureza</th>
-                                <th data-translate="th_tipologia">Tipologia</th>
-                                <th data-translate="th_piso">Piso</th>
-                                <th data-translate="th_fracao">Fração</th>
-                                <th data-translate="th_area_bruta">Área Bruta</th>
-                                <th data-translate="th_area_exterior">Área Exterior</th>
-                                <th data-translate="th_estacionamento">Estacionamento</th>
-                                <th data-translate="th_preco">Preço</th>
-                                <th data-translate="th_plantas">Plantas</th>
-                                <th data-translate="th_reservar">Reservas</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <!-- Data from screenshot -->
-                            <tr><td>Apartamento</td><td>T1</td><td>2</td><td>E</td><td>52.00m²</td><td>7.00m²</td><td>1</td><td>400 000 €</td><td>-</td><td><button class="btn reserve-btn" data-tipologia="T1" data-fracao="2E" data-preco="400 000 €" data-translate="btn_reservar">Reservar</button></td></tr>
-                            <tr><td>Apartamento</td><td>T1</td><td>3</td><td>E</td><td>52.00m²</td><td>7.00m²</td><td>1</td><td>415 000 €</td><td>-</td><td><button class="btn reserve-btn" data-tipologia="T1" data-fracao="3E" data-preco="415 000 €" data-translate="btn_reservar">Reservar</button></td></tr>
-                            <tr><td>Apartamento</td><td>T1</td><td>4</td><td>E</td><td>52.00m²</td><td>7.00m²</td><td>1</td><td>435 000 €</td><td>-</td><td><button class="btn reserve-btn" data-tipologia="T1" data-fracao="4E" data-preco="435 000 €" data-translate="btn_reservar">Reservar</button></td></tr>
-                            <tr><td>Apartamento</td><td>T1+1</td><td>1</td><td>B</td><td>95.00m²</td><td>35.00m²</td><td>1</td><td>690 000 €</td><td>-</td><td><button class="btn reserve-btn" data-tipologia="T1+1" data-fracao="1B" data-preco="690 000 €" data-translate="btn_reservar">Reservar</button></td></tr>
-                            <tr><td>Apartamento</td><td>T1+1</td><td>1</td><td>E</td><td>95.00m²</td><td>35.00m²</td><td>1</td><td>690 000 €</td><td>-</td><td><button class="btn reserve-btn" data-tipologia="T1+1" data-fracao="1E" data-preco="690 000 €" data-translate="btn_reservar">Reservar</button></td></tr>
-                            <tr><td>Apartamento</td><td>T2</td><td>1</td><td>G</td><td>90.00m²</td><td>--</td><td>1</td><td>720 000 €</td><td>-</td><td><button class="btn reserve-btn" data-tipologia="T2" data-fracao="1G" data-preco="720 000 €" data-translate="btn_reservar">Reservar</button></td></tr>
-                            <tr><td>Apartamento</td><td>T2</td><td>1</td><td>A</td><td>105.00m²</td><td>37.00m²</td><td>1</td><td>800 000 €</td><td>-</td><td><button class="btn reserve-btn" data-tipologia="T2" data-fracao="1A" data-preco="800 000 €" data-translate="btn_reservar">Reservar</button></td></tr>
-                            <tr><td>Apartamento</td><td>T2</td><td>1</td><td>C</td><td>101.00m²</td><td>37.00m²</td><td>1</td><td>800 000 €</td><td>-</td><td><button class="btn reserve-btn" data-tipologia="T2" data-fracao="1C" data-preco="800 000 €" data-translate="btn_reservar">Reservar</button></td></tr>
-                            <tr><td>Apartamento</td><td>T2</td><td>1</td><td>D</td><td>101.00m²</td><td>37.00m²</td><td>1</td><td>800 000 €</td><td>-</td><td><button class="btn reserve-btn" data-tipologia="T2" data-fracao="1D" data-preco="800 000 €" data-translate="btn_reservar">Reservar</button></td></tr>
-                            <tr><td>Apartamento</td><td>T2+1</td><td>2</td><td>D</td><td>116.00m²</td><td>14.00m²</td><td>1</td><td>900 000 €</td><td>-</td><td><button class="btn reserve-btn" data-tipologia="T2+1" data-fracao="2D" data-preco="900 000 €" data-translate="btn_reservar">Reservar</button></td></tr>
-                            <tr><td>Apartamento</td><td>T2+1</td><td>3</td><td>D</td><td>116.00m²</td><td>14.00m²</td><td>1</td><td>915 000 €</td><td>-</td><td><button class="btn reserve-btn" data-tipologia="T2+1" data-fracao="3D" data-preco="915 000 €" data-translate="btn_reservar">Reservar</button></td></tr>
-                            <tr><td>Apartamento</td><td>T2+1</td><td>4</td><td>D</td><td>116.00m²</td><td>14.00m²</td><td>1</td><td>930 000 €</td><td>-</td><td><button class="btn reserve-btn" data-tipologia="T2+1" data-fracao="4D" data-preco="930 000 €" data-translate="btn_reservar">Reservar</button></td></tr>
-                            <tr><td>Moradia</td><td>T2+1</td><td>--</td><td>I</td><td>165.00m²</td><td>57.00m²</td><td>1</td><td>1 215 000 €</td><td>-</td><td><button class="btn reserve-btn" data-tipologia="Moradia T2+1" data-fracao="I" data-preco="1 215 000 €" data-translate="btn_reservar">Reservar</button></td></tr>
-                            <tr><td>Moradia</td><td>T2+1</td><td>--</td><td>H</td><td>165.00m²</td><td>57.00m²</td><td>1</td><td>1 215 000 €</td><td>-</td><td><button class="btn reserve-btn" data-tipologia="Moradia T2+1" data-fracao="H" data-preco="1 215 000 €" data-translate="btn_reservar">Reservar</button></td></tr>
-                            <tr><td>Apartamento</td><td>T3+1</td><td>2</td><td>B</td><td>169.00m²</td><td>20.00m²</td><td>2</td><td>1 270 000 €</td><td>-</td><td><button class="btn reserve-btn" data-tipologia="T3+1" data-fracao="2B" data-preco="1 270 000 €" data-translate="btn_reservar">Reservar</button></td></tr>
-                            <tr><td>Apartamento</td><td>T3+1</td><td>2</td><td>C</td><td>170.00m²</td><td>20.00m²</td><td>2</td><td>1 270 000 €</td><td>-</td><td><button class="btn reserve-btn" data-tipologia="T3+1" data-fracao="2C" data-preco="1 270 000 €" data-translate="btn_reservar">Reservar</button></td></tr>
-                            <tr><td>Apartamento</td><td>T3+1</td><td>3</td><td>B</td><td>169.00m²</td><td>20.00m²</td><td>2</td><td>1 300 000 €</td><td>-</td><td><button class="btn reserve-btn" data-tipologia="T3+1" data-fracao="3B" data-preco="1 300 000 €" data-translate="btn_reservar">Reservar</button></td></tr>
-                            <tr><td>Apartamento</td><td>T3+1</td><td>3</td><td>C</td><td>170.00m²</td><td>20.00m²</td><td>2</td><td>1 300 000 €</td><td>-</td><td><button class="btn reserve-btn" data-tipologia="T3+1" data-fracao="3C" data-preco="1 300 000 €" data-translate="btn_reservar">Reservar</button></td></tr>
-                            <tr><td>Apartamento</td><td>T3</td><td>2</td><td>A</td><td>170.00m²</td><td>36.00m²</td><td>2</td><td>1 330 000 €</td><td>-</td><td><button class="btn reserve-btn" data-tipologia="T3" data-fracao="2A" data-preco="1 330 000 €" data-translate="btn_reservar">Reservar</button></td></tr>
-                            <tr><td>Apartamento</td><td>T3+1</td><td>4</td><td>C</td><td>170.00m²</td><td>20.00m²</td><td>2</td><td>1 330 000 €</td><td>-</td><td><button class="btn reserve-btn" data-tipologia="T3+1" data-fracao="4C" data-preco="1 330 000 €" data-translate="btn_reservar">Reservar</button></td></tr>
-                            <tr><td>Apartamento</td><td>T3</td><td>3</td><td>A</td><td>170.00m²</td><td>36.00m²</td><td>2</td><td>1 360 000 €</td><td>-</td><td><button class="btn reserve-btn" data-tipologia="T3" data-fracao="3A" data-preco="1 360 000 €" data-translate="btn_reservar">Reservar</button></td></tr>
-                            <tr><td>Apartamento</td><td>T3+1</td><td>5</td><td>C</td><td>170.00m²</td><td>20.00m²</td><td>1</td><td>1 385 000 €</td><td>-</td><td><button class="btn reserve-btn" data-tipologia="T3+1" data-fracao="5C" data-preco="1 385 000 €" data-translate="btn_reservar">Reservar</button></td></tr>
-                            <tr><td>Apartamento</td><td>T3+1</td><td>5</td><td>D</td><td>171.00m²</td><td>20.00m²</td><td>2</td><td>1 385 000 €</td><td>-</td><td><button class="btn reserve-btn" data-tipologia="T3+1" data-fracao="5D" data-preco="1 385 000 €" data-translate="btn_reservar">Reservar</button></td></tr>
-                            <tr><td>Apartamento</td><td>T3+1</td><td>5</td><td>B</td><td>169.00m²</td><td>20.00m²</td><td>2</td><td>1 385 000 €</td><td>-</td><td><button class="btn reserve-btn" data-tipologia="T3+1" data-fracao="5B" data-preco="1 385 000 €" data-translate="btn_reservar">Reservar</button></td></tr>
-                            <tr><td>Apartamento</td><td>T3</td><td>4</td><td>A</td><td>170.00m²</td><td>36.00m²</td><td>2</td><td>1 395 000 €</td><td>-</td><td><button class="btn reserve-btn" data-tipologia="T3" data-fracao="4A" data-preco="1 395 000 €" data-translate="btn_reservar">Reservar</button></td></tr>
-                            <tr><td>Apartamento</td><td>T5</td><td>6</td><td>A</td><td>231.00m²</td><td>107.00m²</td><td>2</td><td>2 250 000 €</td><td>-</td><td><button class="btn reserve-btn" data-tipologia="T5" data-fracao="6A" data-preco="2 250 000 €" data-translate="btn_reservar">Reservar</button></td></tr>
-                            <tr><td>Apartamento</td><td>T5</td><td>6</td><td>B</td><td>231.00m²</td><td>107.00m²</td><td>1</td><td>2 250 000 €</td><td>-</td><td><button class="btn reserve-btn" data-tipologia="T5" data-fracao="6B" data-preco="2 250 000 €" data-translate="btn_reservar">Reservar</button></td></tr>
-                        </tbody>
-                    </table>
+                    <div class="table-wrapper">
+                        <table class="apartments-table">
+                            <thead>
+                                <tr>
+                                    <th data-translate="th_natureza">Natureza</th>
+                                    <th data-translate="th_tipologia">Tipologia</th>
+                                    <th data-translate="th_piso">Piso</th>
+                                    <th data-translate="th_fracao">Fração</th>
+                                    <th data-translate="th_area_bruta">Área Bruta</th>
+                                    <th data-translate="th_area_exterior">Área Exterior</th>
+                                    <th data-translate="th_estacionamento">Estacionamento</th>
+                                    <th data-translate="th_preco">Preço</th>
+                                    <th data-translate="th_reservar">Reservas</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <!-- Data from screenshot -->
+                                <tr><td>Apartamento</td><td>T1</td><td>2</td><td>E</td><td>52.00m²</td><td>7.00m²</td><td>1</td><td>400 000 €</td><td><button class="btn reserve-btn" data-tipologia="T1" data-fracao="2E" data-preco="400 000 €" data-translate="btn_reservar">Reservar</button></td></tr>
+                                <tr><td>Apartamento</td><td>T1</td><td>3</td><td>E</td><td>52.00m²</td><td>7.00m²</td><td>1</td><td>415 000 €</td><td><button class="btn reserve-btn" data-tipologia="T1" data-fracao="3E" data-preco="415 000 €" data-translate="btn_reservar">Reservar</button></td></tr>
+                                <tr><td>Apartamento</td><td>T1</td><td>4</td><td>E</td><td>52.00m²</td><td>7.00m²</td><td>1</td><td>435 000 €</td><td><button class="btn reserve-btn" data-tipologia="T1" data-fracao="4E" data-preco="435 000 €" data-translate="btn_reservar">Reservar</button></td></tr>
+                                <tr><td>Apartamento</td><td>T1+1</td><td>1</td><td>B</td><td>95.00m²</td><td>35.00m²</td><td>1</td><td>690 000 €</td><td><button class="btn reserve-btn" data-tipologia="T1+1" data-fracao="1B" data-preco="690 000 €" data-translate="btn_reservar">Reservar</button></td></tr>
+                                <tr><td>Apartamento</td><td>T1+1</td><td>1</td><td>E</td><td>95.00m²</td><td>35.00m²</td><td>1</td><td>690 000 €</td><td><button class="btn reserve-btn" data-tipologia="T1+1" data-fracao="1E" data-preco="690 000 €" data-translate="btn_reservar">Reservar</button></td></tr>
+                                <tr><td>Apartamento</td><td>T2</td><td>1</td><td>G</td><td>90.00m²</td><td>--</td><td>1</td><td>720 000 €</td><td><button class="btn reserve-btn" data-tipologia="T2" data-fracao="1G" data-preco="720 000 €" data-translate="btn_reservar">Reservar</button></td></tr>
+                                <tr><td>Apartamento</td><td>T2</td><td>1</td><td>A</td><td>105.00m²</td><td>37.00m²</td><td>1</td><td>800 000 €</td><td><button class="btn reserve-btn" data-tipologia="T2" data-fracao="1A" data-preco="800 000 €" data-translate="btn_reservar">Reservar</button></td></tr>
+                                <tr><td>Apartamento</td><td>T2</td><td>1</td><td>C</td><td>101.00m²</td><td>37.00m²</td><td>1</td><td>800 000 €</td><td><button class="btn reserve-btn" data-tipologia="T2" data-fracao="1C" data-preco="800 000 €" data-translate="btn_reservar">Reservar</button></td></tr>
+                                <tr><td>Apartamento</td><td>T2</td><td>1</td><td>D</td><td>101.00m²</td><td>37.00m²</td><td>1</td><td>800 000 €</td><td><button class="btn reserve-btn" data-tipologia="T2" data-fracao="1D" data-preco="800 000 €" data-translate="btn_reservar">Reservar</button></td></tr>
+                                <tr><td>Apartamento</td><td>T2+1</td><td>2</td><td>D</td><td>116.00m²</td><td>14.00m²</td><td>1</td><td>900 000 €</td><td><button class="btn reserve-btn" data-tipologia="T2+1" data-fracao="2D" data-preco="900 000 €" data-translate="btn_reservar">Reservar</button></td></tr>
+                                <tr><td>Apartamento</td><td>T2+1</td><td>3</td><td>D</td><td>116.00m²</td><td>14.00m²</td><td>1</td><td>915 000 €</td><td><button class="btn reserve-btn" data-tipologia="T2+1" data-fracao="3D" data-preco="915 000 €" data-translate="btn_reservar">Reservar</button></td></tr>
+                                <tr><td>Apartamento</td><td>T2+1</td><td>4</td><td>D</td><td>116.00m²</td><td>14.00m²</td><td>1</td><td>930 000 €</td><td><button class="btn reserve-btn" data-tipologia="T2+1" data-fracao="4D" data-preco="930 000 €" data-translate="btn_reservar">Reservar</button></td></tr>
+                                <tr><td>Moradia</td><td>T2+1</td><td>--</td><td>I</td><td>165.00m²</td><td>57.00m²</td><td>1</td><td>1 215 000 €</td><td><button class="btn reserve-btn" data-tipologia="Moradia T2+1" data-fracao="I" data-preco="1 215 000 €" data-translate="btn_reservar">Reservar</button></td></tr>
+                                <tr><td>Moradia</td><td>T2+1</td><td>--</td><td>H</td><td>165.00m²</td><td>57.00m²</td><td>1</td><td>1 215 000 €</td><td><button class="btn reserve-btn" data-tipologia="Moradia T2+1" data-fracao="H" data-preco="1 215 000 €" data-translate="btn_reservar">Reservar</button></td></tr>
+                                <tr><td>Apartamento</td><td>T3+1</td><td>2</td><td>B</td><td>169.00m²</td><td>20.00m²</td><td>2</td><td>1 270 000 €</td><td><button class="btn reserve-btn" data-tipologia="T3+1" data-fracao="2B" data-preco="1 270 000 €" data-translate="btn_reservar">Reservar</button></td></tr>
+                                <tr><td>Apartamento</td><td>T3+1</td><td>2</td><td>C</td><td>170.00m²</td><td>20.00m²</td><td>2</td><td>1 270 000 €</td><td><button class="btn reserve-btn" data-tipologia="T3+1" data-fracao="2C" data-preco="1 270 000 €" data-translate="btn_reservar">Reservar</button></td></tr>
+                                <tr><td>Apartamento</td><td>T3+1</td><td>3</td><td>B</td><td>169.00m²</td><td>20.00m²</td><td>2</td><td>1 300 000 €</td><td><button class="btn reserve-btn" data-tipologia="T3+1" data-fracao="3B" data-preco="1 300 000 €" data-translate="btn_reservar">Reservar</button></td></tr>
+                                <tr><td>Apartamento</td><td>T3+1</td><td>3</td><td>C</td><td>170.00m²</td><td>20.00m²</td><td>2</td><td>1 300 000 €</td><td><button class="btn reserve-btn" data-tipologia="T3+1" data-fracao="3C" data-preco="1 300 000 €" data-translate="btn_reservar">Reservar</button></td></tr>
+                                <tr><td>Apartamento</td><td>T3</td><td>2</td><td>A</td><td>170.00m²</td><td>36.00m²</td><td>2</td><td>1 330 000 €</td><td><button class="btn reserve-btn" data-tipologia="T3" data-fracao="2A" data-preco="1 330 000 €" data-translate="btn_reservar">Reservar</button></td></tr>
+                                <tr><td>Apartamento</td><td>T3+1</td><td>4</td><td>C</td><td>170.00m²</td><td>20.00m²</td><td>2</td><td>1 330 000 €</td><td><button class="btn reserve-btn" data-tipologia="T3+1" data-fracao="4C" data-preco="1 330 000 €" data-translate="btn_reservar">Reservar</button></td></tr>
+                                <tr><td>Apartamento</td><td>T3</td><td>3</td><td>A</td><td>170.00m²</td><td>36.00m²</td><td>2</td><td>1 360 000 €</td><td><button class="btn reserve-btn" data-tipologia="T3" data-fracao="3A" data-preco="1 360 000 €" data-translate="btn_reservar">Reservar</button></td></tr>
+                                <tr><td>Apartamento</td><td>T3+1</td><td>5</td><td>C</td><td>170.00m²</td><td>20.00m²</td><td>1</td><td>1 385 000 €</td><td><button class="btn reserve-btn" data-tipologia="T3+1" data-fracao="5C" data-preco="1 385 000 €" data-translate="btn_reservar">Reservar</button></td></tr>
+                                <tr><td>Apartamento</td><td>T3+1</td><td>5</td><td>D</td><td>171.00m²</td><td>20.00m²</td><td>2</td><td>1 385 000 €</td><td><button class="btn reserve-btn" data-tipologia="T3+1" data-fracao="5D" data-preco="1 385 000 €" data-translate="btn_reservar">Reservar</button></td></tr>
+                                <tr><td>Apartamento</td><td>T3+1</td><td>5</td><td>B</td><td>169.00m²</td><td>20.00m²</td><td>2</td><td>1 385 000 €</td><td><button class="btn reserve-btn" data-tipologia="T3+1" data-fracao="5B" data-preco="1 385 000 €" data-translate="btn_reservar">Reservar</button></td></tr>
+                                <tr><td>Apartamento</td><td>T3</td><td>4</td><td>A</td><td>170.00m²</td><td>36.00m²</td><td>2</td><td>1 395 000 €</td><td><button class="btn reserve-btn" data-tipologia="T3" data-fracao="4A" data-preco="1 395 000 €" data-translate="btn_reservar">Reservar</button></td></tr>
+                                <tr><td>Apartamento</td><td>T5</td><td>6</td><td>A</td><td>231.00m²</td><td>107.00m²</td><td>2</td><td>2 250 000 €</td><td><button class="btn reserve-btn" data-tipologia="T5" data-fracao="6A" data-preco="2 250 000 €" data-translate="btn_reservar">Reservar</button></td></tr>
+                                <tr><td>Apartamento</td><td>T5</td><td>6</td><td>B</td><td>231.00m²</td><td>107.00m²</td><td>1</td><td>2 250 000 €</td><td><button class="btn reserve-btn" data-tipologia="T5" data-fracao="6B" data-preco="2 250 000 €" data-translate="btn_reservar">Reservar</button></td></tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="cta-container">
+                        <a href="https://drive.google.com/file/d/1rmmrgbdhRQBwzNgP67jjAo0zWU2gkOy4/view?usp=sharing" target="_blank" rel="noopener noreferrer" class="btn" data-translate="cta_ver_plantas">Ver Plantas</a>
+                    </div>
                 </div>
             </div>
         </section>
@@ -1221,6 +1233,7 @@
                     btn_detalhes: 'Mais detalhes',
                     cta_ver_tabela: 'Ver Todas as Frações',
                     cta_ocultar_tabela: 'Ocultar Tabela',
+                    cta_ver_plantas: 'Ver Plantas',
                     th_natureza: 'Natureza',
                     th_tipologia: 'Tipologia',
                     th_piso: 'Piso',
@@ -1229,7 +1242,6 @@
                     th_area_exterior: 'Área Exterior',
                     th_estacionamento: 'Estacionamento',
                     th_preco: 'Preço',
-                    th_plantas: 'Plantas',
                     th_reservar: 'Reservas',
                     btn_reservar: 'Reservar',
                     apt_penthouse_title: 'Penthouse T5',
@@ -1421,6 +1433,7 @@
                     btn_detalhes: 'Más detalles',
                     cta_ver_tabela: 'Ver Todas las Fracciones',
                     cta_ocultar_tabela: 'Ocultar Tabla',
+                    cta_ver_plantas: 'Ver Planos',
                     th_natureza: 'Naturaleza',
                     th_tipologia: 'Tipología',
                     th_piso: 'Piso',
@@ -1429,7 +1442,6 @@
                     th_area_exterior: 'Área Exterior',
                     th_estacionamento: 'Estacionamiento',
                     th_preco: 'Precio',
-                    th_plantas: 'Planos',
                     th_reservar: 'Reservas',
                     btn_reservar: 'Reservar',
                     apt_penthouse_title: 'Penthouse T5',
@@ -1621,6 +1633,7 @@
                     btn_detalhes: 'More details',
                     cta_ver_tabela: 'View All Units',
                     cta_ocultar_tabela: 'Hide Table',
+                    cta_ver_plantas: 'View Floor Plans',
                     th_natureza: 'Nature',
                     th_tipologia: 'Type',
                     th_piso: 'Floor',
@@ -1629,7 +1642,6 @@
                     th_area_exterior: 'Outdoor Area',
                     th_estacionamento: 'Parking',
                     th_preco: 'Price',
-                    th_plantas: 'Floor Plans',
                     th_reservar: 'Reservations',
                     btn_reservar: 'Reserve',
                     apt_penthouse_title: 'Penthouse T5',
@@ -1995,3 +2007,4 @@
 
 </body>
 </html>
+
