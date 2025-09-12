@@ -3,13 +3,17 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Agência Douro | Projeto Imobiliário</title>
+    <title>Porto Prime Living | Apartamentos e Moradias no Campo Alegre</title>
+    <meta name="description" content="Descubra apartamentos e moradias exclusivas no novo empreendimento do Campo Alegre. Imóveis de T1 a T5 com design contemporâneo e comodidades de luxo no coração do Porto." id="meta-description">
     <link rel="icon" href="https://raw.githubusercontent.com/wagmimedia/campoalegre1024/refs/heads/main/Logo%20DOURO%20Transparent1.png" type="image/png">
     
     <!-- Google Fonts: Montserrat para títulos y Lato para texto -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400&family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Schema Markup -->
+    <script type="application/ld+json" id="schema-markup"></script>
 
     <style>
         /* --- RESET Y ESTILOS GLOBALES --- */
@@ -948,7 +952,7 @@
                                 <tr><td>Apartamento</td><td>T1+1</td><td>1</td><td>B</td><td>95.00m²</td><td>35.00m²</td><td>1</td><td>690.000 €</td><td><button class="btn reserve-btn" data-tipologia="T1+1" data-fracao="1B" data-preco="690.000 €" data-translate="btn_reservar">Reservar</button></td></tr>
                                 <tr><td>Apartamento</td><td>T1+1</td><td>1</td><td>E</td><td>95.00m²</td><td>35.00m²</td><td>1</td><td>690.000 €</td><td><button class="btn reserve-btn" data-tipologia="T1+1" data-fracao="1E" data-preco="690.000 €" data-translate="btn_reservar">Reservar</button></td></tr>
                                 <tr><td>Apartamento</td><td>T2</td><td>1</td><td>G</td><td>90.00m²</td><td>--</td><td>2</td><td>720.000 €</td><td><button class="btn reserve-btn" data-tipologia="T2" data-fracao="1G" data-preco="720.000 €" data-translate="btn_reservar">Reservar</button></td></tr>
-                                <tr><td>Apartamento</td><td>T2</td><td>1</td><td>A</td><td>105.00m²</td><td>37.00m²</td><td>1</td><td>800.000 €</td><td><button class="btn reserve-btn" data-tipologia="T2" data-fracao="1A" data-preco="800.000 €" data-translate="btn_reservar">Reservar</button></td></tr>
+                                <tr><td>Apartamento</td><td>T2</td><td>1</td><td>A</td><td>105.00m²</td><td>37.00m²</td><td>2</td><td>800.000 €</td><td><button class="btn reserve-btn" data-tipologia="T2" data-fracao="1A" data-preco="800.000 €" data-translate="btn_reservar">Reservar</button></td></tr>
                                 <tr><td>Apartamento</td><td>T2</td><td>1</td><td>C</td><td>101.00m²</td><td>37.00m²</td><td>1</td><td>800.000 €</td><td><button class="btn reserve-btn" data-tipologia="T2" data-fracao="1C" data-preco="800.000 €" data-translate="btn_reservar">Reservar</button></td></tr>
                                 <tr><td>Apartamento</td><td>T2</td><td>1</td><td>D</td><td>101.00m²</td><td>37.00m²</td><td>1</td><td>800.000 €</td><td><button class="btn reserve-btn" data-tipologia="T2" data-fracao="1D" data-preco="800.000 €" data-translate="btn_reservar">Reservar</button></td></tr>
                                 <tr><td>Apartamento</td><td>T2+1</td><td>2</td><td>D</td><td>116.00m²</td><td>14.00m²</td><td>2</td><td>900.000 €</td><td><button class="btn reserve-btn" data-tipologia="T2+1" data-fracao="2D" data-preco="900.000 €" data-translate="btn_reservar">Reservar</button></td></tr>
@@ -1231,7 +1235,8 @@
             
             const translations = {
                 'pt': {
-                    title: 'Agência Douro | Projeto Imobiliário',
+                    title: 'Porto Prime Living | Apartamentos e Moradias no Campo Alegre',
+                    meta_description: 'Descubra apartamentos e moradias exclusivas no novo empreendimento do Campo Alegre. Imóveis de T1 a T5 com design contemporâneo e comodidades de luxo no coração do Porto.',
                     nav_proyecto: 'O Projeto',
                     nav_apartamentos: 'Apartamentos',
                     nav_ubicacion: 'Localização',
@@ -1282,7 +1287,7 @@
                     form_mensaje_optional: 'Mensagem (opcional)',
                     form_btn: 'Enviar Mensagem',
                     btn_send_reservation: 'Enviar Pedido de Reserva',
-                    footer_copy: '© 2025 <a href="https://agenciadouro.pt" target="_blank" rel="noopener noreferrer">Agência Douro</a>. Todos os direitos reservados. Powered by <a href="https://wagmimedia.agency" target="_blank" rel="noopener noreferrer">WMA</a>.',
+                    footer_copy: '© 2025 <a href="https://portoprimeliving.com" target="_blank" rel="noopener noreferrer">Porto Prime Living</a>. Todos os direitos reservados. Promovido por <a href="https://agenciadouro.pt" target="_blank" rel="noopener noreferrer">Agência Douro</a>. Powered by <a href="https://wagmimedia.agency" target="_blank" rel="noopener noreferrer">WMA</a>.',
                     form_success: 'Mensagem enviada com sucesso!',
                     form_error: 'Ocorreu um erro. Por favor, tente novamente.',
                     reservation_title: 'Pedido de Reserva',
@@ -1431,7 +1436,8 @@
                     }
                 },
                 'es': {
-                    title: 'Agencia Douro | Proyecto Inmobiliario',
+                    title: 'Porto Prime Living | Apartamentos y Villas en Campo Alegre',
+                    meta_description: 'Descubre apartamentos y villas exclusivos en el nuevo desarrollo de Campo Alegre. Viviendas de 1 a 5 dormitorios con diseño contemporáneo y amenidades de lujo en el corazón de Oporto.',
                     nav_proyecto: 'El Proyecto',
                     nav_apartamentos: 'Apartamentos',
                     nav_ubicacion: 'Ubicación',
@@ -1482,7 +1488,7 @@
                     form_mensaje_optional: 'Mensaje (opcional)',
                     form_btn: 'Enviar Mensaje',
                     btn_send_reservation: 'Enviar Solicitud de Reserva',
-                    footer_copy: '© 2025 <a href="https://agenciadouro.pt" target="_blank" rel="noopener noreferrer">Agencia Douro</a>. Todos los derechos reservados. Powered by <a href="https://wagmimedia.agency" target="_blank" rel="noopener noreferrer">WMA</a>.',
+                    footer_copy: '© 2025 <a href="https://portoprimeliving.com" target="_blank" rel="noopener noreferrer">Porto Prime Living</a>. Todos los derechos reservados. Promovido por <a href="https://agenciadouro.pt" target="_blank" rel="noopener noreferrer">Agencia Douro</a>. Powered by <a href="https://wagmimedia.agency" target="_blank" rel="noopener noreferrer">WMA</a>.',
                     form_success: '¡Mensaje enviado con éxito!',
                     form_error: 'Ocurrió un error. Por favor, inténtalo de nuevo.',
                     reservation_title: 'Solicitud de Reserva',
@@ -1631,7 +1637,8 @@
                     }
                 },
                 'en': {
-                    title: 'Douro Agency | Real Estate Project',
+                    title: 'Porto Prime Living | Apartments & Villas in Campo Alegre',
+                    meta_description: 'Discover exclusive apartments and villas in the new Campo Alegre development. 1 to 5-bedroom homes with contemporary design and luxury amenities in the heart of Porto.',
                     nav_proyecto: 'The Project',
                     nav_apartamentos: 'Apartments',
                     nav_ubicacion: 'Location',
@@ -1682,7 +1689,7 @@
                     form_mensaje_optional: 'Message (optional)',
                     form_btn: 'Send Message',
                     btn_send_reservation: 'Send Reservation Request',
-                    footer_copy: '© 2025 <a href="https://agenciadouro.pt" target="_blank" rel="noopener noreferrer">Douro Agency</a>. All rights reserved. Powered by <a href="https://wagmimedia.agency" target="_blank" rel="noopener noreferrer">WMA</a>.',
+                    footer_copy: '© 2025 <a href="https://portoprimeliving.com" target="_blank" rel="noopener noreferrer">Porto Prime Living</a>. All rights reserved. Promoted by <a href="https://agenciadouro.pt" target="_blank" rel="noopener noreferrer">Douro Agency</a>. Powered by <a href="https://wagmimedia.agency" target="_blank" rel="noopener noreferrer">WMA</a>.',
                     form_success: 'Message sent successfully!',
                     form_error: 'An error occurred. Please try again.',
                     reservation_title: 'Reservation Request',
@@ -1839,6 +1846,7 @@
 
             function translatePage() {
                 document.title = translations[lang].title;
+                document.getElementById('meta-description').setAttribute('content', translations[lang].meta_description);
 
                 document.querySelectorAll('[data-translate]').forEach(el => {
                     const key = el.getAttribute('data-translate');
@@ -1861,8 +1869,59 @@
                     }
                 });
             }
+
+            function generateSchema() {
+                const schema = {
+                  "@context": "https://schema.org",
+                  "@type": "Product",
+                  "name": "Porto Prime Living - Empreendimento Residencial no Campo Alegre",
+                  "description": translations[lang].meta_description,
+                  "url": "https://portoprimeliving.com",
+                  "brand": {
+                    "@type": "RealEstateAgent",
+                    "name": "Agência Douro",
+                    "url": "https://www.agenciadouro.pt/",
+                    "logo": "https://raw.githubusercontent.com/wagmimedia/campoalegre1024/refs/heads/main/Logo%20DOURO%20Transparent1.png",
+                    "telephone": ["+351 919 766 323", "+351 919 766 324"],
+                    "email": ["contacto@agenciadouro.pt", "mariamartins@agenciadouro.pt"],
+                     "address": {
+                        "@type": "PostalAddress",
+                        "streetAddress": "Conde Alto Mearim Street, No. 1133, 5th Floor, Room 55 - Via Europa Building",
+                        "addressLocality": "Matosinhos",
+                        "addressRegion": "Porto",
+                        "postalCode": "4450-036",
+                        "addressCountry": "PT"
+                    },
+                    "identifier": "AMI 17 632"
+                  },
+                  "offers": {
+                    "@type": "AggregateOffer",
+                    "lowPrice": "400000",
+                    "highPrice": "2250000",
+                    "priceCurrency": "EUR",
+                    "offerCount": "26" 
+                  },
+                  "isLocatedIn": {
+                      "@type": "Residence",
+                       "address": {
+                           "@type": "PostalAddress",
+                           "addressLocality": "Campo Alegre",
+                           "addressRegion": "Porto",
+                           "addressCountry": "PT"
+                       },
+                       "amenityFeature": [
+                           { "@type": "LocationFeatureSpecification", "name": "Ginásio Equipado" },
+                           { "@type": "LocationFeatureSpecification", "name": "Salas Sociais" },
+                           { "@type": "LocationFeatureSpecification", "name": "Espaço Wellness" },
+                           { "@type": "LocationFeatureSpecification", "name": "Jardins Privados" }
+                       ]
+                  }
+                };
+                 document.getElementById('schema-markup').textContent = JSON.stringify(schema);
+            }
             
             translatePage();
+            generateSchema();
             
             // --- LÓGICA DEL MODAL DE DETALLES ---
             const detailsModal = document.getElementById('apartment-modal');
