@@ -459,6 +459,21 @@
         .table-container.active {
             max-height: 2000px; /* Valor suficientemente grande para acomodar a tabela */
         }
+        
+        .table-cta-bottom {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.7s ease-in-out, margin-top 0.7s ease-in-out, opacity 0.7s ease-in-out;
+            opacity: 0;
+            margin-top: 0;
+            text-align: center;
+        }
+
+        .table-cta-bottom.active {
+            max-height: 100px; /* Suficiente para el botón */
+            opacity: 1;
+            margin-top: 2rem;
+        }
 
         .apartments-table {
             width: 100%;
@@ -957,9 +972,9 @@
                             </tbody>
                         </table>
                     </div>
-                    <div class="cta-container">
-                        <a href="https://drive.google.com/file/d/1rmmrgbdhRQBwzNgP67jjAo0zWU2gkOy4/view?usp=sharing" target="_blank" rel="noopener noreferrer" class="btn" data-translate="cta_ver_plantas">Ver Plantas</a>
-                    </div>
+                </div>
+                <div class="cta-container table-cta-bottom" id="floorplan-cta-container">
+                     <a href="https://drive.google.com/file/d/1rmmrgbdhRQBwzNgP67jjAo0zWU2gkOy4/view?usp=sharing" target="_blank" rel="noopener noreferrer" class="btn" data-translate="cta_ver_plantas">Ver Plantas</a>
                 </div>
             </div>
         </section>
@@ -1992,9 +2007,11 @@
              // --- LÓGICA DE LA TABLA EXPANDIBLE ---
             const toggleBtn = document.getElementById('toggle-table-btn');
             const tableContainer = document.getElementById('apartments-table-container');
+            const floorplanBtnContainer = document.getElementById('floorplan-cta-container');
 
             toggleBtn.addEventListener('click', () => {
                 tableContainer.classList.toggle('active');
+                floorplanBtnContainer.classList.toggle('active');
                 const isTableVisible = tableContainer.classList.contains('active');
                 toggleBtn.textContent = isTableVisible ? translations[lang].cta_ocultar_tabela : translations[lang].cta_ver_tabela;
             });
