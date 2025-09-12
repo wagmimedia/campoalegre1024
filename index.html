@@ -434,6 +434,45 @@
         .carousel-btn#nextBtn {
             right: -25px;
         }
+        
+        .cta-container {
+            text-align: center;
+            margin-top: 3rem;
+        }
+
+        .table-container {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.7s ease-in-out;
+        }
+
+        .table-container.active {
+            max-height: 2000px; /* Valor suficientemente grande para acomodar a tabela */
+        }
+
+        .apartments-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 3rem;
+            font-size: 0.9rem;
+        }
+
+        .apartments-table th, .apartments-table td {
+            padding: 1rem;
+            border: 1px solid #ddd;
+            text-align: left;
+        }
+
+        .apartments-table th {
+            background-color: var(--color-fondo-claro);
+            font-family: var(--fuente-titulos);
+        }
+        
+        .apartments-table .reserve-btn {
+            font-size: 0.8rem;
+            padding: 8px 16px;
+        }
+
 
         /* --- SEÇÃO LOCALIZAÇÃO --- */
         #ubicacion {
@@ -480,6 +519,47 @@
             margin-left: auto;
             margin-right: auto;
         }
+
+        .agency-contact-details {
+            margin-top: 4rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.2);
+            padding-top: 3rem;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            align-items: center;
+            gap: 2rem;
+        }
+        
+        .contact-block {
+            text-align: center;
+        }
+
+        .contact-block p {
+            margin-bottom: 0.5rem;
+            color: rgba(255, 255, 255, 0.8);
+            font-size: 0.9rem;
+        }
+
+        .contact-block a {
+            color: var(--color-blanco);
+            text-decoration: none;
+            transition: opacity 0.3s;
+        }
+        .contact-block a:hover {
+            opacity: 0.8;
+        }
+        
+        .social-icons a {
+            color: var(--color-blanco);
+            margin: 0 0.75rem;
+            transition: opacity 0.3s;
+        }
+        
+        .social-icons a:hover {
+            opacity: 0.8;
+        }
+
         
         /* --- SEÇÃO CONTACTO --- */
         #contacto {
@@ -536,7 +616,7 @@
             width: auto;
         }
         
-        #form-status {
+        #form-status, #reservation-form-status {
             text-align: center;
             margin-top: 1.5rem;
             min-height: 1.5em;
@@ -641,12 +721,19 @@
             color: var(--color-primario);
         }
 
-        #modal-body h4 {
+        #modal-body h4, #reservation-modal-body h4 {
             font-size: 1.2rem;
             margin-top: 2rem;
             margin-bottom: 1rem;
             border-bottom: 1px solid #eee;
             padding-bottom: 0.5rem;
+        }
+        
+        #reservation-unit-details {
+            background-color: var(--color-fondo-oscuro);
+            padding: 1rem;
+            margin-bottom: 2rem;
+            border-left: 3px solid var(--color-primario);
         }
 
 
@@ -685,6 +772,19 @@
             .carousel-btn { display: none; } /* Oculta botones en móvil, se usa swipe */
             .modal-content { width: 95%; padding: 2rem 1.5rem; }
             .amenities-btn { display: none; }
+
+             /* Ocultar columnas específicas da tabela em mobile */
+            .apartments-table th:nth-child(3), .apartments-table td:nth-child(3), /* Piso */
+            .apartments-table th:nth-child(5), .apartments-table td:nth-child(5), /* Área Bruta */
+            .apartments-table th:nth-child(6), .apartments-table td:nth-child(6), /* Área Exterior */
+            .apartments-table th:nth-child(7), .apartments-table td:nth-child(7), /* Estacionamento */
+            .apartments-table th:nth-child(9), .apartments-table td:nth-child(9) { /* Plantas */
+                display: none;
+            }
+            
+            .agency-contact-details {
+                flex-direction: column;
+            }
         }
          @media (max-width: 600px) {
             .apartment-card { flex: 0 0 85%; max-width: 85%; }
@@ -777,7 +877,7 @@
                             <div class="apartment-card-content">
                                 <h3 data-translate="apt_moradia_title">Moradia T2+1</h3>
                                 <p data-translate="apt_moradia_desc">164,50 m² | 1.215.000 €</p>
-                                <a href="#" class="btn" data-translate="btn_detalhes">Mais detalhes</a>
+                                <a href="#" class="btn" data-translate="btn_detalhes" data-apartment-id="moradia">Mais detalhes</a>
                             </div>
                         </div>
                         <!-- Card Apartamento Pátio T2 -->
@@ -786,7 +886,7 @@
                             <div class="apartment-card-content">
                                 <h3 data-translate="apt_patio_title">Apartamento Pátio T2</h3>
                                 <p data-translate="apt_patio_desc">89,50 m² | 720.000 €</p>
-                                <a href="#" class="btn" data-translate="btn_detalhes">Mais detalhes</a>
+                                <a href="#" class="btn" data-translate="btn_detalhes" data-apartment-id="patio">Mais detalhes</a>
                             </div>
                         </div>
                         <!-- Card Apartamento T1 -->
@@ -795,12 +895,65 @@
                             <div class="apartment-card-content">
                                 <h3 data-translate="apt_t1_title">Apartamento T1</h3>
                                 <p data-translate="apt_t1_desc">52 m² | 400.000 €</p>
-                                <a href="#" class="btn" data-translate="btn_detalhes">Mais detalhes</a>
+                                <a href="#" class="btn" data-translate="btn_detalhes" data-apartment-id="t1">Mais detalhes</a>
                             </div>
                         </div>
                     </div>
                     <button class="carousel-btn" id="prevBtn" aria-label="Anterior"><i data-feather="arrow-left"></i></button>
                     <button class="carousel-btn" id="nextBtn" aria-label="Seguinte"><i data-feather="arrow-right"></i></button>
+                </div>
+                
+                <div class="cta-container">
+                    <button id="toggle-table-btn" class="btn" data-translate="cta_ver_tabela">Ver Todas as Frações</button>
+                </div>
+
+                <div class="table-container" id="apartments-table-container">
+                    <table class="apartments-table">
+                        <thead>
+                            <tr>
+                                <th data-translate="th_natureza">Natureza</th>
+                                <th data-translate="th_tipologia">Tipologia</th>
+                                <th data-translate="th_piso">Piso</th>
+                                <th data-translate="th_fracao">Fração</th>
+                                <th data-translate="th_area_bruta">Área Bruta</th>
+                                <th data-translate="th_area_exterior">Área Exterior</th>
+                                <th data-translate="th_estacionamento">Estacionamento</th>
+                                <th data-translate="th_preco">Preço</th>
+                                <th data-translate="th_plantas">Plantas</th>
+                                <th data-translate="th_reservar">Reservas</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <!-- Data from screenshot -->
+                            <tr><td>Apartamento</td><td>T1</td><td>2</td><td>E</td><td>52.00m²</td><td>7.00m²</td><td>1</td><td>400 000 €</td><td>-</td><td><button class="btn reserve-btn" data-tipologia="T1" data-fracao="2E" data-preco="400 000 €" data-translate="btn_reservar">Reservar</button></td></tr>
+                            <tr><td>Apartamento</td><td>T1</td><td>3</td><td>E</td><td>52.00m²</td><td>7.00m²</td><td>1</td><td>415 000 €</td><td>-</td><td><button class="btn reserve-btn" data-tipologia="T1" data-fracao="3E" data-preco="415 000 €" data-translate="btn_reservar">Reservar</button></td></tr>
+                            <tr><td>Apartamento</td><td>T1</td><td>4</td><td>E</td><td>52.00m²</td><td>7.00m²</td><td>1</td><td>435 000 €</td><td>-</td><td><button class="btn reserve-btn" data-tipologia="T1" data-fracao="4E" data-preco="435 000 €" data-translate="btn_reservar">Reservar</button></td></tr>
+                            <tr><td>Apartamento</td><td>T1+1</td><td>1</td><td>B</td><td>95.00m²</td><td>35.00m²</td><td>1</td><td>690 000 €</td><td>-</td><td><button class="btn reserve-btn" data-tipologia="T1+1" data-fracao="1B" data-preco="690 000 €" data-translate="btn_reservar">Reservar</button></td></tr>
+                            <tr><td>Apartamento</td><td>T1+1</td><td>1</td><td>E</td><td>95.00m²</td><td>35.00m²</td><td>1</td><td>690 000 €</td><td>-</td><td><button class="btn reserve-btn" data-tipologia="T1+1" data-fracao="1E" data-preco="690 000 €" data-translate="btn_reservar">Reservar</button></td></tr>
+                            <tr><td>Apartamento</td><td>T2</td><td>1</td><td>G</td><td>90.00m²</td><td>--</td><td>1</td><td>720 000 €</td><td>-</td><td><button class="btn reserve-btn" data-tipologia="T2" data-fracao="1G" data-preco="720 000 €" data-translate="btn_reservar">Reservar</button></td></tr>
+                            <tr><td>Apartamento</td><td>T2</td><td>1</td><td>A</td><td>105.00m²</td><td>37.00m²</td><td>1</td><td>800 000 €</td><td>-</td><td><button class="btn reserve-btn" data-tipologia="T2" data-fracao="1A" data-preco="800 000 €" data-translate="btn_reservar">Reservar</button></td></tr>
+                            <tr><td>Apartamento</td><td>T2</td><td>1</td><td>C</td><td>101.00m²</td><td>37.00m²</td><td>1</td><td>800 000 €</td><td>-</td><td><button class="btn reserve-btn" data-tipologia="T2" data-fracao="1C" data-preco="800 000 €" data-translate="btn_reservar">Reservar</button></td></tr>
+                            <tr><td>Apartamento</td><td>T2</td><td>1</td><td>D</td><td>101.00m²</td><td>37.00m²</td><td>1</td><td>800 000 €</td><td>-</td><td><button class="btn reserve-btn" data-tipologia="T2" data-fracao="1D" data-preco="800 000 €" data-translate="btn_reservar">Reservar</button></td></tr>
+                            <tr><td>Apartamento</td><td>T2+1</td><td>2</td><td>D</td><td>116.00m²</td><td>14.00m²</td><td>1</td><td>900 000 €</td><td>-</td><td><button class="btn reserve-btn" data-tipologia="T2+1" data-fracao="2D" data-preco="900 000 €" data-translate="btn_reservar">Reservar</button></td></tr>
+                            <tr><td>Apartamento</td><td>T2+1</td><td>3</td><td>D</td><td>116.00m²</td><td>14.00m²</td><td>1</td><td>915 000 €</td><td>-</td><td><button class="btn reserve-btn" data-tipologia="T2+1" data-fracao="3D" data-preco="915 000 €" data-translate="btn_reservar">Reservar</button></td></tr>
+                            <tr><td>Apartamento</td><td>T2+1</td><td>4</td><td>D</td><td>116.00m²</td><td>14.00m²</td><td>1</td><td>930 000 €</td><td>-</td><td><button class="btn reserve-btn" data-tipologia="T2+1" data-fracao="4D" data-preco="930 000 €" data-translate="btn_reservar">Reservar</button></td></tr>
+                            <tr><td>Moradia</td><td>T2+1</td><td>--</td><td>I</td><td>165.00m²</td><td>57.00m²</td><td>1</td><td>1 215 000 €</td><td>-</td><td><button class="btn reserve-btn" data-tipologia="Moradia T2+1" data-fracao="I" data-preco="1 215 000 €" data-translate="btn_reservar">Reservar</button></td></tr>
+                            <tr><td>Moradia</td><td>T2+1</td><td>--</td><td>H</td><td>165.00m²</td><td>57.00m²</td><td>1</td><td>1 215 000 €</td><td>-</td><td><button class="btn reserve-btn" data-tipologia="Moradia T2+1" data-fracao="H" data-preco="1 215 000 €" data-translate="btn_reservar">Reservar</button></td></tr>
+                            <tr><td>Apartamento</td><td>T3+1</td><td>2</td><td>B</td><td>169.00m²</td><td>20.00m²</td><td>2</td><td>1 270 000 €</td><td>-</td><td><button class="btn reserve-btn" data-tipologia="T3+1" data-fracao="2B" data-preco="1 270 000 €" data-translate="btn_reservar">Reservar</button></td></tr>
+                            <tr><td>Apartamento</td><td>T3+1</td><td>2</td><td>C</td><td>170.00m²</td><td>20.00m²</td><td>2</td><td>1 270 000 €</td><td>-</td><td><button class="btn reserve-btn" data-tipologia="T3+1" data-fracao="2C" data-preco="1 270 000 €" data-translate="btn_reservar">Reservar</button></td></tr>
+                            <tr><td>Apartamento</td><td>T3+1</td><td>3</td><td>B</td><td>169.00m²</td><td>20.00m²</td><td>2</td><td>1 300 000 €</td><td>-</td><td><button class="btn reserve-btn" data-tipologia="T3+1" data-fracao="3B" data-preco="1 300 000 €" data-translate="btn_reservar">Reservar</button></td></tr>
+                            <tr><td>Apartamento</td><td>T3+1</td><td>3</td><td>C</td><td>170.00m²</td><td>20.00m²</td><td>2</td><td>1 300 000 €</td><td>-</td><td><button class="btn reserve-btn" data-tipologia="T3+1" data-fracao="3C" data-preco="1 300 000 €" data-translate="btn_reservar">Reservar</button></td></tr>
+                            <tr><td>Apartamento</td><td>T3</td><td>2</td><td>A</td><td>170.00m²</td><td>36.00m²</td><td>2</td><td>1 330 000 €</td><td>-</td><td><button class="btn reserve-btn" data-tipologia="T3" data-fracao="2A" data-preco="1 330 000 €" data-translate="btn_reservar">Reservar</button></td></tr>
+                            <tr><td>Apartamento</td><td>T3+1</td><td>4</td><td>C</td><td>170.00m²</td><td>20.00m²</td><td>2</td><td>1 330 000 €</td><td>-</td><td><button class="btn reserve-btn" data-tipologia="T3+1" data-fracao="4C" data-preco="1 330 000 €" data-translate="btn_reservar">Reservar</button></td></tr>
+                            <tr><td>Apartamento</td><td>T3</td><td>3</td><td>A</td><td>170.00m²</td><td>36.00m²</td><td>2</td><td>1 360 000 €</td><td>-</td><td><button class="btn reserve-btn" data-tipologia="T3" data-fracao="3A" data-preco="1 360 000 €" data-translate="btn_reservar">Reservar</button></td></tr>
+                            <tr><td>Apartamento</td><td>T3+1</td><td>5</td><td>C</td><td>170.00m²</td><td>20.00m²</td><td>1</td><td>1 385 000 €</td><td>-</td><td><button class="btn reserve-btn" data-tipologia="T3+1" data-fracao="5C" data-preco="1 385 000 €" data-translate="btn_reservar">Reservar</button></td></tr>
+                            <tr><td>Apartamento</td><td>T3+1</td><td>5</td><td>D</td><td>171.00m²</td><td>20.00m²</td><td>2</td><td>1 385 000 €</td><td>-</td><td><button class="btn reserve-btn" data-tipologia="T3+1" data-fracao="5D" data-preco="1 385 000 €" data-translate="btn_reservar">Reservar</button></td></tr>
+                            <tr><td>Apartamento</td><td>T3+1</td><td>5</td><td>B</td><td>169.00m²</td><td>20.00m²</td><td>2</td><td>1 385 000 €</td><td>-</td><td><button class="btn reserve-btn" data-tipologia="T3+1" data-fracao="5B" data-preco="1 385 000 €" data-translate="btn_reservar">Reservar</button></td></tr>
+                            <tr><td>Apartamento</td><td>T3</td><td>4</td><td>A</td><td>170.00m²</td><td>36.00m²</td><td>2</td><td>1 395 000 €</td><td>-</td><td><button class="btn reserve-btn" data-tipologia="T3" data-fracao="4A" data-preco="1 395 000 €" data-translate="btn_reservar">Reservar</button></td></tr>
+                            <tr><td>Apartamento</td><td>T5</td><td>6</td><td>A</td><td>231.00m²</td><td>107.00m²</td><td>2</td><td>2 250 000 €</td><td>-</td><td><button class="btn reserve-btn" data-tipologia="T5" data-fracao="6A" data-preco="2 250 000 €" data-translate="btn_reservar">Reservar</button></td></tr>
+                            <tr><td>Apartamento</td><td>T5</td><td>6</td><td>B</td><td>231.00m²</td><td>107.00m²</td><td>1</td><td>2 250 000 €</td><td>-</td><td><button class="btn reserve-btn" data-tipologia="T5" data-fracao="6B" data-preco="2 250 000 €" data-translate="btn_reservar">Reservar</button></td></tr>
+                        </tbody>
+                    </table>
                 </div>
             </div>
         </section>
@@ -823,6 +976,29 @@
                 <p data-translate="agencia_desc">Na Agência Douro, a nossa missão é transformar sonhos em realidade, sempre com um compromisso inabalável com a transparência e a responsabilidade. A nossa equipa é composta por profissionais altamente qualificados, prontos para o ajudar a realizar o sonho da sua vida.</p>
                 <h3 data-translate="agencia_subtitle" style="text-align: center; font-size: 1.5rem; margin-top: 3rem; font-weight: 600;">Porque escolher a Agência Douro?</h3>
                 <p data-translate="agencia_desc2">A atuar no mercado nacional e internacional, a Agência Douro é reconhecida pela sua transparência, responsabilidade e compromisso em proporcionar tranquilidade em cada transação. Seja para habitação própria ou para investimento, oferecemos um apoio completo para garantir que o seu negócio seja seguro e eficaz.</p>
+                
+                <div class="agency-contact-details">
+                    <div class="contact-block">
+                        <p>Douro Real Estate Agency</p>
+                        <p>AMI 17 632</p>
+                        <p>Conde Alto Mearim Street, No. 1133</p>
+                        <p>5th Floor, Room 55 - Via Europa Building</p>
+                        <p>4450-036 - Matosinhos, Porto</p>
+                    </div>
+                    <div class="contact-block">
+                         <p><a href="mailto:contacto@agenciadouro.pt">contacto@agenciadouro.pt</a></p>
+                         <p><a href="mailto:mariamartins@agenciadouro.pt">mariamartins@agenciadouro.pt</a></p>
+                         <p><a href="https://wa.me/351919766323" target="_blank">+351 919 766 323</a></p>
+                         <p><a href="https://wa.me/351919766324" target="_blank">+351 919 766 324</a></p>
+                         <div class="social-icons">
+                            <a href="https://www.facebook.com/AgenciaDouro/" target="_blank" aria-label="Facebook"><i data-feather="facebook"></i></a>
+                            <a href="https://www.instagram.com/agenciadouro/" target="_blank" aria-label="Instagram"><i data-feather="instagram"></i></a>
+                            <a href="https://www.youtube.com/channel/UCGJZI52b1FKoQm_FQ5XtZgw" target="_blank" aria-label="YouTube"><i data-feather="youtube"></i></a>
+                            <a href="https://www.agenciadouro.pt/" target="_blank" aria-label="Website"><i data-feather="globe"></i></a>
+                        </div>
+                    </div>
+                </div>
+
             </div>
         </section>
 
@@ -858,13 +1034,47 @@
         </div>
     </footer>
 
-    <!-- ======================= MODAL ======================== -->
+    <!-- ======================= MODAL DETALHES ======================== -->
     <div class="modal" id="apartment-modal">
         <div class="modal-overlay"></div>
         <div class="modal-content">
             <button class="modal-close" aria-label="Fechar">&times;</button>
             <div id="modal-body">
-                <!-- Conteúdo do Modal será injetado aqui via JavaScript -->
+                <!-- Conteúdo do Modal de detalhes será injetado aqui via JavaScript -->
+            </div>
+        </div>
+    </div>
+    
+    <!-- ======================= MODAL RESERVA ======================== -->
+    <div class="modal" id="reservation-modal">
+        <div class="modal-overlay"></div>
+        <div class="modal-content">
+            <button class="modal-close" aria-label="Fechar">&times;</button>
+            <div id="reservation-modal-body">
+                <h2 data-translate="reservation_title">Pedido de Reserva</h2>
+                <p data-translate="reservation_desc">Por favor, preencha os seus dados para solicitar a reserva da seguinte unidade:</p>
+                <div id="reservation-unit-details"></div>
+                <form id="reservation-form" class="contact-form">
+                    <input type="hidden" id="reservation-tipologia" name="tipologia">
+                    <input type="hidden" id="reservation-fracao" name="fracao">
+                    <input type="hidden" id="reservation-preco" name="preco">
+                    <div class="form-group">
+                         <input type="text" id="reservation-nombre" name="nombre" data-translate-placeholder="form_nombre" placeholder="Nome Completo" required>
+                    </div>
+                    <div class="form-group">
+                        <input type="email" id="reservation-email" name="email" data-translate-placeholder="form_email" placeholder="Endereço de Email" required>
+                    </div>
+                     <div class="form-group form-group-full">
+                        <input type="tel" id="reservation-phone" name="phone" data-translate-placeholder="form_phone" placeholder="Telefone" required>
+                    </div>
+                    <div class="form-group form-group-full">
+                        <textarea id="reservation-mensaje" name="mensaje" rows="4" data-translate-placeholder="form_mensaje_optional" placeholder="Mensagem (opcional)"></textarea>
+                    </div>
+                    <div class="form-group form-group-full" style="text-align: center;">
+                        <button type="submit" class="btn" id="reservation-submit-btn" data-translate="btn_send_reservation">Enviar Pedido</button>
+                    </div>
+                    <div id="reservation-form-status" class="form-group form-group-full"></div>
+                </form>
             </div>
         </div>
     </div>
@@ -1015,6 +1225,19 @@
                     amenities_titulo: 'Comodidades',
                     apartamentos_titulo: 'Apartamentos Destacados',
                     btn_detalhes: 'Mais detalhes',
+                    cta_ver_tabela: 'Ver Todas as Frações',
+                    cta_ocultar_tabela: 'Ocultar Tabela',
+                    th_natureza: 'Natureza',
+                    th_tipologia: 'Tipologia',
+                    th_piso: 'Piso',
+                    th_fracao: 'Fração',
+                    th_area_bruta: 'Área Bruta',
+                    th_area_exterior: 'Área Exterior',
+                    th_estacionamento: 'Estacionamento',
+                    th_preco: 'Preço',
+                    th_plantas: 'Plantas',
+                    th_reservar: 'Reservas',
+                    btn_reservar: 'Reservar',
                     apt_penthouse_title: 'Penthouse T5',
                     apt_penthouse_desc: '231 m² | 2.250.000 €',
                     apt_moradia_title: 'Moradia T2+1',
@@ -1033,12 +1256,17 @@
                     contacto_desc: 'Interessado em saber mais? Deixe-nos a sua mensagem e entraremos em contacto consigo o mais brevemente possível para lhe fornecer toda a informação de que necessita.',
                     form_nombre: 'Nome Completo',
                     form_email: 'Endereço de Email',
+                    form_phone: 'Telefone',
                     form_mensaje: 'A sua mensagem',
+                    form_mensaje_optional: 'Mensagem (opcional)',
                     form_btn: 'Enviar Mensagem',
+                    btn_send_reservation: 'Enviar Pedido de Reserva',
                     footer_copy: '© 2025 <a href="https://agenciadouro.pt" target="_blank" rel="noopener noreferrer">Agência Douro</a>. Todos os direitos reservados. Powered by <a href="https://wagmimedia.agency" target="_blank" rel="noopener noreferrer">WMA</a>.',
                     form_success: 'Mensagem enviada com sucesso!',
                     form_error: 'Ocorreu um erro. Por favor, tente novamente.',
-                    // Detalles del Modal
+                    reservation_title: 'Pedido de Reserva',
+                    reservation_desc: 'Por favor, preencha os seus dados para solicitar a reserva da seguinte unidade:',
+                    // Detalles del Modal - Penthouse
                     penthouse_details: {
                         title: 'Detalhes da Penthouse T5',
                         desc: 'Apartamento T5 com 231,00 m² de área bruta privativa, 120,00 m² de área exterior composta por um terraço de 107,00 m² e uma piscina de 13,00 m², box com portão motorizado com 4 lugares de estacionamento e arrecadação.',
@@ -1069,6 +1297,116 @@
                             'Bomba de calor para aquecimento de águas sanitárias',
                             'Elevadores do tipo Schmitt + Sohn'
                         ]
+                    },
+                    // Detalles del Modal - Moradia
+                    moradia_details: {
+                        title: 'Detalhes da Moradia T2+1',
+                        desc: 'Moradia T2+1 com 164,50 m² de área bruta privativa. 58,50 m² de área exterior constituída por terraço com 7,00 m², jardim 27,50 m² e pátio 21,50 m², box com portão motorizado com 2 lugares de garagem e arrumo.',
+                        subtitle1: 'Características do Imóvel:',
+                        features1: [
+                            '02 Quartos sendo 02 suítes completas',
+                            '03 Casas de banho sendo 01 de serviço',
+                            'Escritório',
+                            'Sala de Estar / Jantar',
+                            'Cozinha independente equipada com eletrodomésticos Bosch',
+                            'Lavandaria',
+                            'Terraço com 7,00 m² com acesso pela Sala, jardim 27,50 m² e acesso pela sala de jantar. Pátio interior de 21,50 m²',
+                            'Box com 02 lugares de garagem',
+                            'Arrumos',
+                            'Orientação solar: nascente/poente'
+                        ],
+                        subtitle2: 'Características dos acabamentos e equipamentos:',
+                        features2: [
+                            'Caixilharia de alumínio com corte térmico',
+                            'Cozinha equipada com eletrodomésticos da marca Bosch',
+                            'Domótica',
+                            'Ar Condicionado por condutas',
+                            'Box com portão motorizado',
+                            'Pré-instalação para carregamento de veículos elétricos',
+                            'Parque para bicicletas',
+                            'Bomba de calor para aquecimento das águas sanitárias',
+                            'Elevadores do tipo Schmitt + Sohn'
+                        ],
+                        subtitle3: 'Espaços Comuns:',
+                        features3: [
+                            'Áreas exteriores',
+                            'Salas sociais',
+                            'Ginásio equipado',
+                            'Espaço Wellness'
+                        ]
+                    },
+                    // Detalles del Modal - Patio
+                    patio_details: {
+                        title: 'Detalhes do Apartamento Pátio T2',
+                        desc: 'Apartamento T2 no 1º andar pátio, com 89,50 m2 de área bruta privativa. 67,50 m2 de jardim, box com portão motorizado com 2 lugares de garagem e arrumo.',
+                        subtitle1: 'Características do Imóvel:',
+                        features1: [
+                            '02 Quartos sendo 01 suíte master',
+                            '02 Casas de banho sendo 01 suite master',
+                            'Closet suite master',
+                            'Sala de Estar / Jantar',
+                            'Cozinha equipada com eletrodomésticos Bosch',
+                            'Lavandaria',
+                            'Jardim 67,50m2',
+                            'Box com 02 lugares de garagem',
+                            'Arrumos',
+                            'Orientação solar: nascente/poente'
+                        ],
+                        subtitle2: 'Características dos acabamentos e equipamentos:',
+                        features2: [
+                            'Caixilharia de alumínio com corte térmico',
+                            'Cozinha equipada com eletrodomésticos da marca Bosch',
+                            'Domótica',
+                            'Ar Condicionado por condutas',
+                            'Box com portão motorizado',
+                            'Pré-instalação para carregamento de veículos elétricos',
+                            'Parque para bicicletas',
+                            'Bomba de calor para aquecimento das águas sanitárias',
+                            'Elevadores do tipo Schmitt + Sohn'
+                        ],
+                        subtitle3: 'Espaços Comuns:',
+                        features3: [
+                            'Áreas exteriores',
+                            'Salas sociais',
+                            'Ginásio equipado',
+                            'Espaço Wellness'
+                        ]
+                    },
+                     // Detalles del Modal - T1
+                    t1_details: {
+                        title: 'Detalhes do Apartamento T1',
+                        desc: 'Apartamento T1 no 2º andar, 52,00 m2 de área bruta privativa. 06,50 m2 de varanda, box.',
+                        subtitle1: 'Características do Imóvel:',
+                        features1: [
+                            '01 Quarto',
+                            '01 Casa de banho',
+                            'Cozinha equipada com eletrodomésticos Bosch/ Jantar',
+                            'Sala de estar',
+                            'Lavandaria',
+                            'Varanda 06,50m2',
+                            'Box com 01 lugar de garagem',
+                            'Arrumos',
+                            'Orientação solar: nascente/poente'
+                        ],
+                        subtitle2: 'Características dos acabamentos e equipamentos:',
+                        features2: [
+                            'Caixilharia de alumínio com corte térmico',
+                            'Cozinha equipada com eletrodomésticos da marca Bosch',
+                            'Domótica',
+                            'Ar Condicionado por condutas',
+                            'Box com portão motorizado',
+                            'Pré-instalação para carregamento de veículos elétricos',
+                            'Parque para bicicletas',
+                            'Bomba de calor para aquecimento das águas sanitárias',
+                            'Elevadores do tipo Schmitt + Sohn'
+                        ],
+                        subtitle3: 'Espaços Comuns:',
+                        features3: [
+                            'Áreas exteriores',
+                            'Salas sociais',
+                            'Ginásio equipado',
+                            'Espaço Wellness'
+                        ]
                     }
                 },
                 'es': {
@@ -1087,6 +1425,19 @@
                     amenities_titulo: 'Amenidades',
                     apartamentos_titulo: 'Apartamentos Destacados',
                     btn_detalhes: 'Más detalles',
+                    cta_ver_tabela: 'Ver Todas las Fracciones',
+                    cta_ocultar_tabela: 'Ocultar Tabla',
+                    th_natureza: 'Naturaleza',
+                    th_tipologia: 'Tipología',
+                    th_piso: 'Piso',
+                    th_fracao: 'Fracción',
+                    th_area_bruta: 'Área Bruta',
+                    th_area_exterior: 'Área Exterior',
+                    th_estacionamento: 'Estacionamiento',
+                    th_preco: 'Precio',
+                    th_plantas: 'Planos',
+                    th_reservar: 'Reservas',
+                    btn_reservar: 'Reservar',
                     apt_penthouse_title: 'Penthouse T5',
                     apt_penthouse_desc: '231 m² | 2.250.000 €',
                     apt_moradia_title: 'Villa T2+1',
@@ -1105,12 +1456,17 @@
                     contacto_desc: '¿Interesado en saber más? Déjanos tu mensaje y te contactaremos a la brevedad para ofrecerte toda la información que necesites.',
                     form_nombre: 'Nombre Completo',
                     form_email: 'Correo Electrónico',
+                    form_phone: 'Teléfono',
                     form_mensaje: 'Tu mensaje',
+                    form_mensaje_optional: 'Mensaje (opcional)',
                     form_btn: 'Enviar Mensaje',
+                    btn_send_reservation: 'Enviar Solicitud de Reserva',
                     footer_copy: '© 2025 <a href="https://agenciadouro.pt" target="_blank" rel="noopener noreferrer">Agencia Douro</a>. Todos los derechos reservados. Powered by <a href="https://wagmimedia.agency" target="_blank" rel="noopener noreferrer">WMA</a>.',
                     form_success: '¡Mensaje enviado con éxito!',
                     form_error: 'Ocurrió un error. Por favor, inténtalo de nuevo.',
-                     // Detalles del Modal
+                    reservation_title: 'Solicitud de Reserva',
+                    reservation_desc: 'Por favor, rellene sus datos para solicitar la reserva de la siguiente unidad:',
+                     // Detalles del Modal - Penthouse
                     penthouse_details: {
                         title: 'Detalles del Penthouse T5',
                         desc: 'Apartamento de 5 dormitorios con 231,00 m² de área bruta privada, 120,00 m² de área exterior que consta de una terraza de 107,00 m² y una piscina de 13,00 m², box con portón motorizado con 4 plazas de aparcamiento y trastero.',
@@ -1141,6 +1497,116 @@
                             'Bomba de calor para calentamiento de aguas sanitarias',
                             'Ascensores tipo Schmitt + Sohn'
                         ]
+                    },
+                     // Detalles del Modal - Moradia
+                    moradia_details: {
+                        title: 'Detalles de la Villa T2+1',
+                        desc: 'Villa T2+1 con 164,50 m² de área bruta privada. 58,50 m² de área exterior compuesta por terraza de 7,00 m², jardín de 27,50 m² y patio de 21,50 m², box con portón motorizado con 2 plazas de garaje y trastero.',
+                        subtitle1: 'Características del Inmueble:',
+                        features1: [
+                            '02 Dormitorios siendo 02 suites completas',
+                            '03 Baños siendo 01 de servicio',
+                            'Despacho',
+                            'Salón / Comedor',
+                            'Cocina independiente equipada con electrodomésticos Bosch',
+                            'Lavandería',
+                            'Terraza de 7,00 m² con acceso desde el Salón, jardín de 27,50 m² con acceso desde el comedor. Patio interior de 21,50 m²',
+                            'Box con 02 plazas de garaje',
+                            'Trastero',
+                            'Orientación solar: este/oeste'
+                        ],
+                        subtitle2: 'Características de acabados y equipamiento:',
+                        features2: [
+                            'Carpintería de aluminio con rotura de puente térmico',
+                            'Cocina equipada con electrodomésticos Bosch',
+                            'Domótica',
+                            'Aire acondicionado por conductos',
+                            'Box con portón motorizado',
+                            'Preinstalación para carga de vehículos eléctricos',
+                            'Aparcamiento para bicicletas',
+                            'Bomba de calor para calentamiento de aguas sanitarias',
+                            'Ascensores tipo Schmitt + Sohn'
+                        ],
+                        subtitle3: 'Zonas Comunes:',
+                        features3: [
+                            'Zonas exteriores',
+                            'Salas sociales',
+                            'Gimnasio equipado',
+                            'Espacio Wellness'
+                        ]
+                    },
+                    // Detalles del Modal - Patio
+                    patio_details: {
+                        title: 'Detalles del Apartamento con Patio T2',
+                        desc: 'Apartamento T2 en el 1er piso con patio, con 89,50 m² de área bruta privada. 67,50 m² de jardín, box con portón motorizado con 2 plazas de garaje y trastero.',
+                        subtitle1: 'Características del Inmueble:',
+                        features1: [
+                            '02 Dormitorios, siendo 01 suite principal',
+                            '02 Baños, siendo 01 en la suite principal',
+                            'Vestidor en la suite principal',
+                            'Salón / Comedor',
+                            'Cocina equipada con electrodomésticos Bosch',
+                            'Lavandería',
+                            'Jardín de 67,50m²',
+                            'Box con 02 plazas de garaje',
+                            'Trastero',
+                            'Orientación solar: este/oeste'
+                        ],
+                        subtitle2: 'Características de acabados y equipamiento:',
+                        features2: [
+                            'Carpintería de aluminio con rotura de puente térmico',
+                            'Cocina equipada con electrodomésticos Bosch',
+                            'Domótica',
+                            'Aire acondicionado por conductos',
+                            'Box con portón motorizado',
+                            'Preinstalación para carga de vehículos eléctricos',
+                            'Aparcamiento para bicicletas',
+                            'Bomba de calor para calentamiento de aguas sanitarias',
+                            'Ascensores tipo Schmitt + Sohn'
+                        ],
+                        subtitle3: 'Zonas Comunes:',
+                        features3: [
+                            'Zonas exteriores',
+                            'Salas sociales',
+                            'Gimnasio equipado',
+                            'Espacio Wellness'
+                        ]
+                    },
+                    // Detalles del Modal - T1
+                    t1_details: {
+                        title: 'Detalles del Apartamento T1',
+                        desc: 'Apartamento T1 en la 2ª planta, 52,00 m² de superficie bruta privada. Balcón de 6,50 m², box.',
+                        subtitle1: 'Características del Inmueble:',
+                        features1: [
+                            '01 Dormitorio',
+                            '01 Baño',
+                            'Cocina/Comedor equipada con electrodomésticos Bosch',
+                            'Sala de estar',
+                            'Lavandería',
+                            'Balcón de 6,50m²',
+                            'Box con 1 plaza de garaje',
+                            'Trastero',
+                            'Orientación solar: este/oeste'
+                        ],
+                        subtitle2: 'Características de acabados y equipamiento:',
+                        features2: [
+                            'Carpintería de aluminio con rotura de puente térmico',
+                            'Cocina equipada con electrodomésticos Bosch',
+                            'Domótica',
+                            'Aire acondicionado por conductos',
+                            'Box con portón motorizado',
+                            'Preinstalación para carga de vehículos eléctricos',
+                            'Aparcamiento para bicicletas',
+                            'Bomba de calor para calentamiento de aguas sanitarias',
+                            'Ascensores tipo Schmitt + Sohn'
+                        ],
+                        subtitle3: 'Zonas Comunes:',
+                        features3: [
+                            'Zonas exteriores',
+                            'Salas sociales',
+                            'Gimnasio equipado',
+                            'Espacio Wellness'
+                        ]
                     }
                 },
                 'en': {
@@ -1159,6 +1625,19 @@
                     amenities_titulo: 'Amenities',
                     apartamentos_titulo: 'Featured Apartments',
                     btn_detalhes: 'More details',
+                    cta_ver_tabela: 'View All Units',
+                    cta_ocultar_tabela: 'Hide Table',
+                    th_natureza: 'Nature',
+                    th_tipologia: 'Type',
+                    th_piso: 'Floor',
+                    th_fracao: 'Unit',
+                    th_area_bruta: 'Gross Area',
+                    th_area_exterior: 'Outdoor Area',
+                    th_estacionamento: 'Parking',
+                    th_preco: 'Price',
+                    th_plantas: 'Floor Plans',
+                    th_reservar: 'Reservations',
+                    btn_reservar: 'Reserve',
                     apt_penthouse_title: 'Penthouse T5',
                     apt_penthouse_desc: '231 m² | €2,250,000',
                     apt_moradia_title: 'Villa T2+1',
@@ -1177,12 +1656,17 @@
                     contacto_desc: 'Interested in learning more? Leave us your message, and we will contact you shortly to provide you with all the information you need.',
                     form_nombre: 'Full Name',
                     form_email: 'Email Address',
+                    form_phone: 'Phone Number',
                     form_mensaje: 'Your message',
+                    form_mensaje_optional: 'Message (optional)',
                     form_btn: 'Send Message',
+                    btn_send_reservation: 'Send Reservation Request',
                     footer_copy: '© 2025 <a href="https://agenciadouro.pt" target="_blank" rel="noopener noreferrer">Douro Agency</a>. All rights reserved. Powered by <a href="https://wagmimedia.agency" target="_blank" rel="noopener noreferrer">WMA</a>.',
                     form_success: 'Message sent successfully!',
                     form_error: 'An error occurred. Please try again.',
-                    // Detalles del Modal
+                    reservation_title: 'Reservation Request',
+                    reservation_desc: 'Please fill in your details to request the reservation of the following unit:',
+                    // Detalles del Modal - Penthouse
                     penthouse_details: {
                         title: 'Penthouse T5 Details',
                         desc: '5-bedroom apartment with 231.00 m² of private gross area, 120.00 m² of outdoor area consisting of a 107.00 m² terrace and a 13.00 m² swimming pool, box with motorized gate with 4 parking spaces and storage.',
@@ -1212,6 +1696,116 @@
                             'Bicycle park',
                             'Heat pump for heating sanitary water',
                             'Schmitt + Sohn type elevators'
+                        ]
+                    },
+                    // Detalles del Modal - Moradia
+                    moradia_details: {
+                        title: 'Villa T2+1 Details',
+                        desc: 'T2+1 villa with 164.50 m² of private gross area. 58.50 m² of outdoor area consisting of a 7.00 m² terrace, a 27.50 m² garden, and a 21.50 m² patio, box with motorized gate with 2 garage spaces and storage.',
+                        subtitle1: 'Property Features:',
+                        features1: [
+                            '02 Bedrooms, both of which are complete suites',
+                            '03 Bathrooms, 01 of which is a service bathroom',
+                            'Office',
+                            'Living / Dining Room',
+                            'Independent kitchen equipped with Bosch appliances',
+                            'Laundry',
+                            '7.00 m² terrace with access from the living room, 27.50 m² garden with access from the dining room. 21.50 m² interior patio',
+                            'Box with 02 garage spaces',
+                            'Storage',
+                            'Solar orientation: east/west'
+                        ],
+                        subtitle2: 'Features of finishes and equipment:',
+                        features2: [
+                            'Aluminum frames with thermal break',
+                            'Kitchen equipped with Bosch appliances',
+                            'Home automation',
+                            'Ducted Air Conditioning',
+                            'Box with motorized gate',
+                            'Pre-installation for charging electric vehicles',
+                            'Bicycle park',
+                            'Heat pump for domestic hot water',
+                            'Schmitt + Sohn type elevators'
+                        ],
+                        subtitle3: 'Common Areas:',
+                        features3: [
+                            'Outdoor areas',
+                            'Social rooms',
+                            'Equipped gym',
+                            'Wellness space'
+                        ]
+                    },
+                    // Detalles del Modal - Patio
+                    patio_details: {
+                        title: 'Patio Apartment T2 Details',
+                        desc: 'T2 apartment on the 1st floor with a patio, with 89.50 m² of private gross area. 67.50 m² garden, box with motorized gate with 2 garage spaces and storage.',
+                        subtitle1: 'Property Features:',
+                        features1: [
+                            '02 Bedrooms, one of which is a master suite',
+                            '02 Bathrooms, one of which is in the master suite',
+                            'Master suite walk-in closet',
+                            'Living / Dining Room',
+                            'Kitchen equipped with Bosch appliances',
+                            'Laundry',
+                            '67.50 m² Garden',
+                            'Box with 02 garage spaces',
+                            'Storage',
+                            'Solar orientation: east/west'
+                        ],
+                        subtitle2: 'Features of finishes and equipment:',
+                        features2: [
+                            'Aluminum frames with thermal break',
+                            'Kitchen equipped with Bosch appliances',
+                            'Home automation',
+                            'Ducted Air Conditioning',
+                            'Box with motorized gate',
+                            'Pre-installation for charging electric vehicles',
+                            'Bicycle park',
+                            'Heat pump for domestic hot water',
+                            'Schmitt + Sohn type elevators'
+                        ],
+                        subtitle3: 'Common Areas:',
+                        features3: [
+                            'Outdoor areas',
+                            'Social rooms',
+                            'Equipped gym',
+                            'Wellness space'
+                        ]
+                    },
+                     // Detalles del Modal - T1
+                    t1_details: {
+                        title: '1-Bedroom Apartment Details',
+                        desc: 'T1 apartment on the 2nd floor, 52.00 m² of private gross area. 6.50 m² balcony, garage box.',
+                        subtitle1: 'Property Features:',
+                        features1: [
+                            '01 Bedroom',
+                            '01 Bathroom',
+                            'Kitchen/Dining equipped with Bosch appliances',
+                            'Living room',
+                            'Laundry',
+                            '6.50 m² Balcony',
+                            'Box with 1 parking space',
+                            'Storage',
+                            'Solar orientation: east/west'
+                        ],
+                        subtitle2: 'Features of finishes and equipment:',
+                        features2: [
+                            'Aluminum frames with thermal break',
+                            'Kitchen equipped with Bosch appliances',
+                            'Home automation',
+                            'Ducted Air Conditioning',
+                            'Box with motorized gate',
+                            'Pre-installation for charging electric vehicles',
+                            'Bicycle park',
+                            'Heat pump for domestic hot water',
+                            'Schmitt + Sohn type elevators'
+                        ],
+                        subtitle3: 'Common Areas:',
+                        features3: [
+                            'Outdoor areas',
+                            'Social rooms',
+                            'Equipped gym',
+                            'Wellness space'
                         ]
                     }
                 }
@@ -1249,46 +1843,115 @@
             
             translatePage();
             
-            // --- LÓGICA DEL MODAL ---
-            const modal = document.getElementById('apartment-modal');
-            const modalBody = document.getElementById('modal-body');
-            const detailButtons = document.querySelectorAll('[data-apartment-id]');
+            // --- LÓGICA DEL MODAL DE DETALLES ---
+            const detailsModal = document.getElementById('apartment-modal');
+            const detailsModalBody = document.getElementById('modal-body');
+            const detailButtons = document.querySelectorAll('a[data-apartment-id]');
 
             detailButtons.forEach(button => {
                 button.addEventListener('click', (e) => {
                     e.preventDefault();
                     const apartmentId = button.getAttribute('data-apartment-id');
+                    const detailsKey = `${apartmentId}_details`;
                     
-                    if (apartmentId === 'penthouse') {
-                        const details = translations[lang].penthouse_details;
+                    if (translations[lang][detailsKey]) {
+                        const details = translations[lang][detailsKey];
                         let contentHTML = `<h2>${details.title}</h2><p>${details.desc}</p>`;
                         
-                        contentHTML += `<h4>${details.subtitle1}</h4><ul>`;
-                        details.features1.forEach(item => contentHTML += `<li>${item}</li>`);
-                        contentHTML += `</ul>`;
+                        if(details.subtitle1 && details.features1) {
+                            contentHTML += `<h4>${details.subtitle1}</h4><ul>`;
+                            details.features1.forEach(item => contentHTML += `<li>${item}</li>`);
+                            contentHTML += `</ul>`;
+                        }
 
-                        contentHTML += `<h4>${details.subtitle2}</h4><ul>`;
-                        details.features2.forEach(item => contentHTML += `<li>${item}</li>`);
-                        contentHTML += `</ul>`;
+                        if(details.subtitle2 && details.features2) {
+                            contentHTML += `<h4>${details.subtitle2}</h4><ul>`;
+                            details.features2.forEach(item => contentHTML += `<li>${item}</li>`);
+                            contentHTML += `</ul>`;
+                        }
+                        
+                        if(details.subtitle3 && details.features3) {
+                            contentHTML += `<h4>${details.subtitle3}</h4><ul>`;
+                            details.features3.forEach(item => contentHTML += `<li>${item}</li>`);
+                            contentHTML += `</ul>`;
+                        }
 
-                        modalBody.innerHTML = contentHTML;
-                        modal.classList.add('active');
+                        detailsModalBody.innerHTML = contentHTML;
+                        detailsModal.classList.add('active');
                     }
                 });
             });
 
-            modal.querySelector('.modal-overlay').addEventListener('click', () => {
-                modal.classList.remove('active');
+            [detailsModal.querySelector('.modal-overlay'), detailsModal.querySelector('.modal-close')].forEach(el => {
+                el.addEventListener('click', () => detailsModal.classList.remove('active'));
             });
-             modal.querySelector('.modal-close').addEventListener('click', () => {
-                modal.classList.remove('active');
+
+            // --- LÓGICA DEL MODAL DE RESERVA ---
+            const reservationModal = document.getElementById('reservation-modal');
+            const reservationForm = document.getElementById('reservation-form');
+            const reservationStatus = document.getElementById('reservation-form-status');
+            const reservationSubmitBtn = document.getElementById('reservation-submit-btn');
+
+            document.querySelectorAll('.reserve-btn').forEach(button => {
+                button.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    const tipologia = button.dataset.tipologia;
+                    const fracao = button.dataset.fracao;
+                    const preco = button.dataset.preco;
+
+                    document.getElementById('reservation-unit-details').innerHTML = `<strong>${tipologia} | ${fracao}</strong><br>${preco}`;
+                    reservationForm.tipologia.value = tipologia;
+                    reservationForm.fracao.value = fracao;
+                    reservationForm.preco.value = preco;
+                    
+                    reservationModal.classList.add('active');
+                });
             });
             
-            // --- LÓGICA DEL FORMULARIO DE CONTACTO ---
+             reservationForm.addEventListener('submit', async (e) => {
+                e.preventDefault();
+                reservationSubmitBtn.disabled = true;
+                reservationStatus.textContent = '';
+                reservationStatus.classList.remove('form-status-success', 'form-status-error');
+
+                try {
+                    await addDoc(collection(db, 'reservationRequests'), {
+                        unit_tipologia: reservationForm.tipologia.value,
+                        unit_fracao: reservationForm.fracao.value,
+                        unit_preco: reservationForm.preco.value,
+                        client_name: reservationForm.nombre.value,
+                        client_email: reservationForm.email.value,
+                        client_phone: reservationForm.phone.value,
+                        client_message: reservationForm.mensaje.value,
+                        createdAt: serverTimestamp()
+                    });
+
+                    reservationStatus.textContent = translations[lang].form_success;
+                    reservationStatus.classList.add('form-status-success');
+                    setTimeout(() => {
+                        reservationModal.classList.remove('active');
+                        reservationForm.reset();
+                        reservationStatus.textContent = '';
+                    }, 2500);
+
+                } catch (error) {
+                    console.error("Error adding reservation: ", error);
+                    reservationStatus.textContent = translations[lang].form_error;
+                    reservationStatus.classList.add('form-status-error');
+                } finally {
+                    reservationSubmitBtn.disabled = false;
+                }
+            });
+
+            [reservationModal.querySelector('.modal-overlay'), reservationModal.querySelector('.modal-close')].forEach(el => {
+                el.addEventListener('click', () => reservationModal.classList.remove('active'));
+            });
+            
+            // --- LÓGICA DEL FORMULARIO DE CONTACTO GENERAL ---
             const contactForm = document.getElementById('contact-form');
             const formStatus = document.getElementById('form-status');
             const submitBtn = document.getElementById('submit-btn');
-
+            
             contactForm.addEventListener('submit', async (e) => {
                 e.preventDefault();
                 submitBtn.disabled = true;
@@ -1300,7 +1963,6 @@
                 const message = contactForm.mensaje.value;
 
                 try {
-                    // Guarda los datos en una colección simple
                     await addDoc(collection(db, 'contactSubmissions'), {
                         name: name,
                         email: email,
@@ -1319,6 +1981,16 @@
                 } finally {
                     submitBtn.disabled = false;
                 }
+            });
+
+             // --- LÓGICA DE LA TABLA EXPANDIBLE ---
+            const toggleBtn = document.getElementById('toggle-table-btn');
+            const tableContainer = document.getElementById('apartments-table-container');
+
+            toggleBtn.addEventListener('click', () => {
+                tableContainer.classList.toggle('active');
+                const isTableVisible = tableContainer.classList.contains('active');
+                toggleBtn.textContent = isTableVisible ? translations[lang].cta_ocultar_tabela : translations[lang].cta_ver_tabela;
             });
 
 
