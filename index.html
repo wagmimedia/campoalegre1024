@@ -444,6 +444,8 @@
             max-height: 0;
             overflow: hidden;
             transition: max-height 0.7s ease-in-out;
+            overflow-x: auto; /* AÑADIDO: Permite el scroll horizontal en la tabla */
+            -webkit-overflow-scrolling: touch; /* Mejora el scroll en iOS */
         }
 
         .table-container.active {
@@ -461,6 +463,7 @@
             padding: 1rem;
             border: 1px solid #ddd;
             text-align: left;
+            white-space: nowrap; /* AÑADIDO: Evita que el texto se parta en varias líneas */
         }
 
         .apartments-table th {
@@ -773,15 +776,6 @@
             .modal-content { width: 95%; padding: 2rem 1.5rem; }
             .amenities-btn { display: none; }
 
-             /* Ocultar columnas específicas da tabela em mobile */
-            .apartments-table th:nth-child(3), .apartments-table td:nth-child(3), /* Piso */
-            .apartments-table th:nth-child(5), .apartments-table td:nth-child(5), /* Área Bruta */
-            .apartments-table th:nth-child(6), .apartments-table td:nth-child(6), /* Área Exterior */
-            .apartments-table th:nth-child(7), .apartments-table td:nth-child(7), /* Estacionamento */
-            .apartments-table th:nth-child(9), .apartments-table td:nth-child(9) { /* Plantas */
-                display: none;
-            }
-            
             .agency-contact-details {
                 flex-direction: column;
             }
